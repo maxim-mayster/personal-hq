@@ -9,7 +9,7 @@ test('HQ starts disconnected and contains no demo records',async({page})=>{
  await open(page);
  await expect(page.locator('#status')).toHaveText('LIVE DATA REQUIRED');
  await expect(page.locator('#feed')).toContainText('waiting for authenticated live work data');
- await expect(page.locator('#done')).toHaveText('0');
+ await expect(page.locator('#done')).toHaveText('—');
  await expect(page.locator('body')).not.toContainText(/DEMO/i);
  await page.locator('[data-view="vault"]').click();
  await expect(page.locator('#graphmode')).toContainText('LIVE DATA REQUIRED');

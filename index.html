@@ -343,9 +343,9 @@ function openDialog(title,build){
 }
 dialog.addEventListener('close',()=>{if(dialogOpener?.isConnected)dialogOpener.focus()});
 function updateCounters(){
- $('#done').textContent=String(workspace.tasks.filter(t=>t.done).length);
- const stats=$$('#command .stat');stats[1].querySelector('small').textContent='Open tasks';stats[1].querySelector('strong').textContent=String(workspace.tasks.filter(t=>!t.done).length);
- stats[2].querySelector('small').textContent='Notes available';stats[2].querySelector('strong').textContent=String(nodes.length);
+ const liveTasks=workspace.tasks.length>0;$('#done').textContent=liveTasks?String(workspace.tasks.filter(t=>t.done).length):'—';
+ const stats=$$('#command .stat');stats[1].querySelector('small').textContent='Open tasks';stats[1].querySelector('strong').textContent=liveTasks?String(workspace.tasks.filter(t=>!t.done).length):'—';
+ stats[2].querySelector('small').textContent='Notes available';stats[2].querySelector('strong').textContent=nodes.length?String(nodes.length):'—';
  $('.mission h2').textContent=workspace.mission;
 }
 function renderTasks(){
