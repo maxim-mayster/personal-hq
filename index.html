@@ -17,6 +17,33 @@
 .boot{position:fixed;inset:0;background:#03050b;z-index:20;display:grid;place-items:center;transition:.7s}.boot.hide{opacity:0;pointer-events:none}.bootin{text-align:center}.bootin strong{font:700 43px 'Space Mono';letter-spacing:.15em;color:var(--cyan);text-shadow:0 0 30px var(--cyan)}.bootin p{font:10px 'Space Mono';color:var(--muted)}.load{width:290px;height:3px;background:#162234;margin:25px auto 0;border-radius:5px}.load i{display:block;height:100%;width:0;background:var(--cyan);box-shadow:0 0 15px var(--cyan);animation:load 2.4s forwards}@keyframes load{to{width:100%}}
 @media(max-width:900px){.app{grid-template-columns:70px 1fr}.side{padding:18px 9px}.brand{margin:0 auto 24px}.brand b,.brand small,.nav button em,.sidefoot{display:none}.nav button{text-align:center;padding:11px}.nav button span{margin:0}.cols{grid-template-columns:1fr}.comms{width:43vw}.detail{width:43vw}}
 @media(max-width:650px){body{overflow:auto}.app{display:block;height:auto;min-height:100vh}.side{height:auto;display:flex;align-items:center;padding:10px 12px;position:relative}.brand{margin:0}.brand b,.brand small{display:block}.nav{margin-left:auto;display:flex}.nav button{padding:8px}.top{position:relative;left:auto;right:auto;top:auto;padding:16px 14px}.view{padding:0 14px 22px;height:auto;min-height:calc(100vh - 90px)}.graphview{height:calc(100vh - 90px);min-height:620px;margin:0 -14px}.graphhud{top:12px;left:12px;right:12px}.graphsearch{width:100%}.pills{display:none}.graphstats{top:64px;right:12px}.detail{top:105px;right:10px;bottom:10px;width:calc(100% - 20px)}.comms{position:relative;left:auto;bottom:auto;width:auto;margin-top:14px}.stats{grid-template-columns:repeat(2,1fr)}.cards,.settings{grid-template-columns:1fr 1fr}.mission{margin-top:0}}
+/* In-place HQ usability layer: same shell, explicit states. */
+[hidden]{display:none!important}
+.notelist{position:absolute;z-index:3;left:18px;top:150px;bottom:300px;width:min(340px,42%);overflow:auto;padding:12px}
+.notelist .conn{width:100%;margin-bottom:7px;text-align:left;font-size:12px;background:#07101c}
+.graphstats{top:auto;bottom:20px;max-width:45%}
+#graphlabels{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+#graphlabels span{position:absolute;left:0;top:0;max-width:165px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:10px 'Space Mono',monospace;color:#b9ccdc;text-shadow:0 1px 4px #000;background:#060810aa;border-radius:3px;padding:2px 4px}
+.graphhud{flex-wrap:wrap;position:relative;top:auto;left:auto;right:auto;margin:0 18px;padding:10px;gap:7px}
+.graphsearch{width:260px;flex:1 1 220px}.pills{flex:1 1 520px}.graphview{padding-top:105px}
+#graph{top:200px;bottom:65px}.graphstats{right:18px}.notelist{top:230px;bottom:70px}.detail{top:230px}
+dialog{color:var(--txt);background:var(--panel2);border:1px solid var(--strong);border-radius:14px;width:min(500px,calc(100vw - 28px));padding:0;max-height:85dvh;box-shadow:var(--shadow)}dialog::backdrop{background:#02040dcc;backdrop-filter:blur(4px)}dialog label{display:block;font-size:12px;margin:12px 0 6px}dialog p{font-size:13px;line-height:1.6}dialog .tool{margin:4px 8px 4px 0}
+.task{width:100%;background:var(--panel);color:var(--txt);text-align:left;gap:14px}.task div{min-width:0;overflow-wrap:anywhere}
+.focusline{border-top:1px solid var(--line);margin-top:16px;padding-top:12px}.focusline p{margin-top:6px}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+:root{--muted:#9aadc2;--line:rgba(111,231,255,.2)}
+.app{height:100dvh;min-height:0}.side{position:relative;overflow:auto}.main{display:grid;grid-template-rows:auto minmax(0,1fr) auto;min-height:0}
+.top{position:relative;inset:auto;padding:20px 24px;gap:16px;align-items:center;background:rgba(6,8,16,.6);border-bottom:1px solid var(--line)}.top>div:first-child{min-width:0}.top h1{font-size:25px}.top p{line-height:1.5}.status{flex-shrink:0;color:#8dd9ec;border-color:#00d4ff44;background:#00d4ff0d}
+.view{grid-row:2;min-height:0;height:100%;padding:20px 24px;min-width:0}.cols{align-items:start}.ph{gap:10px;flex-wrap:wrap}.ph .pt{flex:1}.pt{font-size:13px}.pb{font-size:13px;line-height:1.6}.pb label{display:block;margin:12px 0 6px}.tiny{font-size:10px}.feed{max-height:340px;overflow:auto}.feedrow{font-size:12px}.feedrow time{color:var(--muted);font-size:10px}.mission h2{font-size:21px;line-height:1.35;overflow-wrap:anywhere}.mission p{font-size:13px}.stat strong{font-size:23px}.stat small{font-size:12px}.card h3{font-size:15px}.card p{font-size:13px;margin:8px 0 14px}.card{transition:border-color .2s}.card:hover,.task:hover{border-color:var(--strong)}.card:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}.task b{font-size:13px}.task small{font-size:11px}.task .priority{flex-shrink:0}.nav button{font-size:13px}.nav em{font-style:normal}.input{font-size:13px;line-height:1.5}.tool,.pill{font-size:10px;min-height:34px;color:#a4c4d6}.tool:hover{background:#00d4ff18}.collapse{min-width:34px;font-size:16px;padding:3px}.switch{flex-shrink:0}.row{gap:12px;font-size:13px}.actions button{min-height:38px}.actions button:disabled,button:disabled{opacity:.55;cursor:not-allowed}.connections{overflow-wrap:anywhere}.conn{font:12px 'DM Sans',sans-serif;background:#07101c;text-align:left}.detail .pb{font-size:13px}.close{min-width:38px;min-height:38px}
+.comms{position:relative;left:auto;bottom:auto;grid-row:3;width:auto;margin:0 24px 16px}.comms .ph{padding:9px 14px}.comms .pt{font-size:12px}.comms .chat{height:230px}.bubble{font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere}.bubble .tool{display:block;margin-top:8px}.chatform input{font-size:13px}.chatform button{min-height:38px}.chatbody{gap:10px}.comms.expanded{border-color:var(--strong)}
+.graphview{padding:14px 0 0;margin:0;background:radial-gradient(ellipse at 50% 45%,#0a1925,#04070d 70%)}
+#graph{top:var(--graph-top,180px);bottom:62px}.graphhud{margin:0 18px}.graphsearch{font-size:12px;min-width:0}.pills{display:flex}.notelist,.detail{top:var(--graph-top,180px);bottom:64px}.detail{width:min(350px,42%)}.notelist{background:#08111ef5}.legend{bottom:13px;max-width:47%;gap:8px}.graphstats{bottom:13px;top:auto;max-width:47%;font-size:10px}.graphstats div{font-size:10px}.legend span{font-size:10px}.focuslabel{display:none!important}#mission-input{resize:vertical;margin:8px 0}.skip-link{position:fixed;left:14px;top:-70px;z-index:25;background:var(--panel2);padding:12px;color:var(--cyan)}.skip-link:focus{top:10px}
+@media(max-width:1100px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.top h1{font-size:22px}.top{padding:16px 20px}.settings{grid-template-columns:1fr}.cols{grid-template-columns:1fr}.sidefoot{position:static;margin-top:40px}.graphhud .pills{flex-basis:100%}}
+@media(max-width:650px){
+ body{overflow:auto}.app{height:auto;min-height:100dvh}.side{padding:12px;display:block}.brand{margin:0 0 10px}.brand b,.brand small{display:block}.nav{margin:0;display:flex;overflow-x:auto;gap:5px;padding-bottom:4px}.nav button{flex:0 0 auto;display:flex;align-items:center;font-size:11px;padding:10px}.nav button em{display:block}.nav button span{margin-right:7px}.sidefoot{display:none}.main{display:block}.top{padding:14px;gap:10px;align-items:flex-start}.top h1{font-size:22px}.top p{font-size:12px}.status{font-size:9px;padding:8px;max-width:110px}.view{padding:14px;min-height:40vh;height:auto}.stats{gap:8px}.stat{padding:12px}.stat strong{font-size:21px}.cards,.settings{grid-template-columns:1fr}.mission{padding:16px}.mission h2{font-size:19px}.graphview{padding:12px 0 0;margin:0;height:760px;min-height:760px}.graphhud{margin:0 10px;gap:6px}.graphsearch{flex-basis:100%;width:100%;font-size:16px}.pills{flex-basis:100%;gap:4px}.pill{font-size:9px;min-height:34px;padding:6px}.graphhud .tool{font-size:10px;min-height:36px}.graphstats{left:10px;right:10px;bottom:10px;max-width:none;text-align:left;padding:6px 8px}.legend{left:10px;bottom:65px;max-width:calc(100% - 20px);font-size:9px}#graph{bottom:110px}.detail,.notelist{left:10px;right:10px;bottom:110px;width:auto;max-width:none}.detail{z-index:4;background:#091322fa}.notelist{z-index:3}.comms{margin:14px}.comms .ph{gap:8px}.comms .pt{font-size:11px}.comms .chat{height:300px}.chatform input,.input{font-size:16px}.tool{min-height:38px}.row{font-size:13px}.ph{padding:12px}.pb{padding:14px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+.still .pulse{animation:none}
 </style>
 </head>
 <body>
@@ -31,31 +58,382 @@
 <section class="view" id="settings"><div class="settings"><div class="panel"><div class="ph"><div class="pt"><em>IDENTITY</em> ARIA profile</div></div><div class="pb"><h2 style="margin-top:0">ARIA</h2><p class="muted" style="font-size:12px">Autonomous Reasoning & Intelligence Agent</p><p style="font-size:11px;line-height:1.6;color:#b7cad6">Be useful. Be honest about uncertainty. Turn intent into momentum. Preserve the human thread.</p></div></div><div class="panel"><div class="ph"><div class="pt"><em>BEHAVIOR</em> Operating switches</div></div><div class="pb"><div class="row">Verbose mode <button class="switch"><i></i></button></div><div class="row">Auto-plan <button class="switch on"><i></i></button></div><div class="row">Memory write <button class="switch on"><i></i></button></div><div class="row">Ambient activity <button class="switch on"><i></i></button></div></div></div><div class="panel"><div class="ph"><div class="pt"><em>OBSIDIAN LINK</em> Local REST API</div></div><div class="pb"><p class="muted" style="font-size:10px;line-height:1.5">Connect to the Obsidian Local REST API plugin. The token stays in this browser and is never sent anywhere except your configured localhost endpoint.</p><label class="tiny">API URL</label><input class="input" id="apiurl" value="http://localhost:27123" style="margin:5px 0 9px"><label class="tiny">BEARER TOKEN</label><input class="input" id="apitoken" type="password" placeholder="paste plugin token" style="margin:5px 0 9px"><button class="tool" id="sync">SYNC VAULT → GRAPH</button><span class="tiny" id="syncmsg" style="margin-left:8px"></span></div></div></div></section>
 <div class="panel comms"><div class="ph"><div class="pt"><em>COMMS</em> Terminal // talk to ARIA</div><span class="eyebrow" id="thinking">READY</span></div><div class="chat"><div class="chatbody" id="chatbody"><div class="bubble a">Welcome to my second brain. The Vault is alive now: nodes breathe, connections carry signal, and every memory has somewhere to lead.<time>ARIA · just now</time></div></div><form class="chatform" id="chatform"><input id="chatinput" placeholder="Send a signal to ARIA…"><button class="send">SEND ↗</button></form></div></div>
 </main></div>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<noscript><style>.boot{display:none}</style><p>ARIA needs JavaScript for navigation. Enable it to use this local demo HQ. No live agent or vault is connected.</p></noscript>
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];let selected=null,graphReady=false,simPaused=false,showLabels=true,showClusters=true,activeFilter='all';
 const COLORS={concept:'#00d4ff',person:'#b44fff',project:'#ff6b35',resource:'#ffd700',fact:'#00ff88',question:'#ff3366',fleeting:'#888899'};
 const fallback=[
-['Machine Learning','concept','Ideas about systems that learn from data.',['AI','Attention Is All You Need'],'ai'],['Attention Is All You Need','resource','A paper explaining the Transformer architecture.',['Transformers','Machine Learning'],'ai'],['Transformers','concept','Sequence models built around attention and parallel computation.',['Machine Learning','LLM Systems'],'ai'],['LLM Systems','concept','Large language model architecture, inference, and evaluation.',['Transformers','Hermes Agent'],'ai'],['Hermes Agent','project','The operating layer that turns intent into tool-backed action.',['Personal HQ','LLM Systems'],'systems'],['Personal HQ','project','A living visual workspace for the agent and operator.',['Responsive Design','Hermes Agent','User Preferences'],'systems'],['User Preferences','fact','The operator prefers direct, practical, clickable prototypes.',['Personal HQ','Responsive Design'],'operator'],['Responsive Design','concept','Prioritize real viewport fit and legibility over oversized elements.',['User Preferences','Personal HQ'],'operator'],['Mayster Heating & Air','project','Operational review starboard and internal incentives.',['User Preferences'],'operator'],['Reliability','concept','Systems should remain accessible and verified after changes.',['Personal HQ','Hermes Agent'],'systems'],['Open Questions','question','How should the graph write back to a real vault safely?',['Obsidian Vault','Personal HQ'],'operator'],['Obsidian Vault','resource','Markdown knowledge base with wikilinks, tags, and frontmatter.',['Open Questions','Personal HQ'],'operator']];
-let nodes=[],edges=[],scene,camera,renderer,controls,nodeMeshes=[],edgeMeshes=[],pulseMeshes=[],raycaster,mouse,clock=new THREE.Clock();
-function makeData(rows=fallback){nodes=rows.map((r,i)=>({id:r[0],title:r[0],type:r[1],content:r[2],links:r[3],tag:r[4],confidence:82+(i*7)%18,created:'2026-09-09',modified:'2026-09-09',x:(Math.random()-.5)*130,y:(Math.random()-.5)*82,z:(Math.random()-.5)*100}));let by=new Map(nodes.map(n=>[n.title.toLowerCase(),n]));edges=[];nodes.forEach(n=>n.links.forEach(t=>{let v=by.get(t.toLowerCase());if(v&&n.id<v.id)edges.push({a:n,b:v,type:'RELATES_TO',t:Math.random()})}));$('#gstats').textContent=`${nodes.length} NOTES · ${edges.length} LINKS · ${new Set(nodes.map(n=>n.tag)).size} CLUSTERS`}
-function init3D(){scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x050508,.006);camera=new THREE.PerspectiveCamera(60,1,.1,2000);camera.position.set(0,4,145);renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.7));renderer.setSize($('#graph').clientWidth,$('#graph').clientHeight);$('#graph').appendChild(renderer.domElement);controls=new THREE.OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.08;controls.autoRotate=true;controls.autoRotateSpeed=.18;controls.minDistance=24;controls.maxDistance=420;scene.add(new THREE.AmbientLight(0x1a1a2e,1.2));[[70,55,45,0x00d4ff],[-75,35,25,0xb44fff],[0,-55,-45,0xff6b35]].forEach(p=>{let l=new THREE.PointLight(p[3],1.2,240);l.position.set(...p.slice(0,3));scene.add(l)});let stars=new THREE.BufferGeometry(),arr=new Float32Array(5000);for(let i=0;i<arr.length;i++)arr[i]=(Math.random()-.5)*900;stars.setAttribute('position',new THREE.BufferAttribute(arr,3));scene.add(new THREE.Points(stars,new THREE.PointsMaterial({color:0x88aacc,size:.42,transparent:true,opacity:.5})));raycaster=new THREE.Raycaster();mouse=new THREE.Vector2();makeData();rebuild();window.addEventListener('resize',resize);renderer.domElement.addEventListener('pointerdown',pick);renderer.domElement.addEventListener('dblclick',fly);animate()}
-function mat(hex,opacity=1){return new THREE.MeshPhongMaterial({color:hex,emissive:hex,emissiveIntensity:.35,transparent:true,opacity,shininess:100})}
-function rebuild(){nodeMeshes.forEach(o=>scene.remove(o));edgeMeshes.forEach(o=>scene.remove(o));pulseMeshes.forEach(o=>scene.remove(o));nodeMeshes=[];edgeMeshes=[];pulseMeshes=[];let degree=new Map(nodes.map(n=>[n.id,0]));edges.forEach(e=>{degree.set(e.a.id,degree.get(e.a.id)+1);degree.set(e.b.id,degree.get(e.b.id)+1)});nodes.forEach((n,i)=>{let size=1.15+Math.min(degree.get(n.id),6)*.28,m=new THREE.Mesh(new THREE.SphereGeometry(size,28,18),mat(COLORS[n.type]));m.position.set(n.x,n.y,n.z);m.userData=n;let glow=new THREE.Mesh(new THREE.SphereGeometry(size*1.55,16,12),new THREE.MeshBasicMaterial({color:COLORS[n.type],transparent:true,opacity:.13,blending:THREE.AdditiveBlending,depthWrite:false}));m.add(glow);scene.add(m);nodeMeshes.push(m)});edges.forEach(e=>{let a=new THREE.Vector3(e.a.x,e.a.y,e.a.z),b=new THREE.Vector3(e.b.x,e.b.y,e.b.z),mid=a.clone().add(b).multiplyScalar(.5);mid.y+=Math.sin(e.t*9)*7;let curve=new THREE.QuadraticBezierCurve3(a,mid,b),geo=new THREE.BufferGeometry().setFromPoints(curve.getPoints(20)),c=new THREE.Color(COLORS[e.a.type]).lerp(new THREE.Color(COLORS[e.b.type]),.5),line=new THREE.Line(geo,new THREE.LineBasicMaterial({color:c,transparent:true,opacity:.22}));line.userData=e;scene.add(line);edgeMeshes.push(line);let pulse=new THREE.Mesh(new THREE.SphereGeometry(.38,10,7),new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.9,blending:THREE.AdditiveBlending}));pulse.userData={e,curve,phase:Math.random()};scene.add(pulse);pulseMeshes.push(pulse)})}
-function animate(){requestAnimationFrame(animate);let t=clock.getElapsedTime();controls.update();nodeMeshes.forEach((m,i)=>{let n=m.userData,p=.92+Math.sin(t*1.5+i*.77)*.08;m.children[0].scale.setScalar(p);m.material.opacity=n._hidden ? .08 : n._dim ? .12 : .85});pulseMeshes.forEach(p=>{let d=p.userData,u=(t*.08+d.phase)%1;p.position.copy(d.curve.getPoint(u));p.material.opacity=.25+Math.sin(u*Math.PI)*.7});renderer.render(scene,camera)}
-function resize(){if(!renderer)return;let el=$('#graph');camera.aspect=el.clientWidth/el.clientHeight;camera.updateProjectionMatrix();renderer.setSize(el.clientWidth,el.clientHeight)}
-function pick(e){let r=renderer.domElement.getBoundingClientRect();mouse.x=((e.clientX-r.left)/r.width)*2-1;mouse.y=-((e.clientY-r.top)/r.height)*2+1;raycaster.setFromCamera(mouse,camera);let hit=raycaster.intersectObjects(nodeMeshes)[0];if(hit)select(hit.object.userData);else deselect()}
-function select(n){selected=n;nodeMeshes.forEach(m=>{m.userData._dim=!!n&&!n.links.includes(m.userData.id)&&m.userData.id!==n.id});$('#dcolor').style.color=COLORS[n.type];$('#dcolor').style.background=COLORS[n.type];$('#dtype').textContent=n.type.toUpperCase();$('#dtitle').textContent=n.title;$('#dmeta').textContent=`CONFIDENCE ${n.confidence}% · TAG #${n.tag} · MODIFIED ${n.modified}`;$('#dcontent').textContent=n.content+'\n\nThis node is reachable from the current memory cluster. Agent traversal is limited to connected context when asked about it.';$('#connections').innerHTML=n.links.map(x=>`<div class="conn" data-jump="${x}">${x}<small>RELATES_TO</small></div>`).join('')||'<span class="muted">No outgoing connections · orphan candidate</span>';$('#detail').classList.add('show');$$('.conn').forEach(c=>c.onclick=()=>{let v=nodes.find(x=>x.id===c.dataset.jump);if(v)select(v)});$('#focuslabel').style.display='block';$('#focuslabel').textContent='AGENT FOCUS · '+n.title;$('#status').textContent='READING '+n.title.toUpperCase();addFeed('Observer','selected '+n.title+' and loaded its reachable context.')}
-function deselect(){selected=null;nodeMeshes.forEach(m=>m.userData._dim=false);$('#detail').classList.remove('show');$('#focuslabel').style.display='none';$('#status').textContent='ONLINE / ACTIVE'}
-function fly(){if(!selected)return;let target=new THREE.Vector3(selected.x,selected.y,selected.z);camera.position.lerp(target.clone().add(new THREE.Vector3(0,0,30)),.35);controls.target.lerp(target,.35)}
-function applyFilter(){let q=$('#search').value.toLowerCase();nodes.forEach(n=>{let matches=(!q||[n.title,n.content,n.tag].join(' ').toLowerCase().includes(q))&&(activeFilter==='all'||n.type===activeFilter)||(activeFilter==='orphan'&&!edges.some(e=>e.a===n||e.b===n));n._hidden=!matches});nodeMeshes.forEach(m=>m.userData._hidden=m.userData._hidden)}
-function addFeed(who,text){let d=document.createElement('div');d.className='feedrow';d.innerHTML='<i></i><p><b>'+who+'</b> '+text+'</p><time>now</time>';$('#feed').prepend(d)}
-$$('.nav button').forEach(b=>b.onclick=()=>{$$('.nav button').forEach(x=>x.classList.remove('on'));b.classList.add('on');$$('.view').forEach(v=>v.classList.remove('on'));$('#'+b.dataset.view).classList.add('on');if(b.dataset.view==='vault'&&!graphReady){init3D();graphReady=true}if(renderer)setTimeout(resize,50)});
-$('#close').onclick=deselect;$('#search').oninput=applyFilter;$$('.pill').forEach(p=>p.onclick=()=>{if(p.id==='orphan'){activeFilter=activeFilter==='orphan'?'all':'orphan'}else{activeFilter=p.dataset.filter};$$('.pill').forEach(x=>x.classList.toggle('active',x===p));applyFilter()});document.addEventListener('keydown',e=>{if(!camera)return;if(e.key==='r'){camera.position.set(0,4,145);controls.target.set(0,0,0)}if(e.key==='f'){camera.position.set(0,0,210);controls.target.set(0,0,0)}if(e.key==='g'){showClusters=!showClusters}if(e.key==='l'){showLabels=!showLabels}if(e.key===' '){e.preventDefault();simPaused=!simPaused;controls.autoRotate=!simPaused}if('1234567'.includes(e.key)){let types=['concept','person','project','resource','fact','question','fleeting'];activeFilter=types[Number(e.key)-1];$$('.pill').forEach(x=>x.classList.toggle('active',x.dataset.filter===activeFilter));applyFilter()}});
-$$('.switch').forEach(s=>s.onclick=()=>s.classList.toggle('on'));$('#sync').onclick=syncVault;
-async function syncVault(){let base=$('#apiurl').value.replace(/\/$/,''),token=$('#apitoken').value.trim();$('#syncmsg').textContent='CONNECTING…';try{let r=await fetch(base+'/vault/',{headers:token?{Authorization:'Bearer '+token}:{}});if(!r.ok)throw Error('HTTP '+r.status);let files=await r.json(),md=(Array.isArray(files)?files:files.files||[]).filter(x=>(typeof x==='string'?x:x.path||x.name||'').endsWith('.md'));let rows=[];for(let f of md.slice(0,180)){let path=typeof f==='string'?f:(f.path||f.name);let rr=await fetch(base+'/vault/'+path.split('/').map(encodeURIComponent).join('/'),{headers:token?{Authorization:'Bearer '+token}:{}});if(!rr.ok)continue;let text=await rr.text(),title=path.split('/').pop().replace(/\.md$/,'');let links=[...text.matchAll(/\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|[^\]]+)?\]\]/g)].map(m=>m[1].trim());let tags=[...text.matchAll(/(^|\s)#([a-zA-Z0-9_-]+)/g)].map(m=>m[2]);let fm=(text.match(/^---\n([\s\S]*?)\n---/)||[])[1]||'';let typ=(fm.match(/type:\s*([^\n]+)/)||[])[1]||'concept';typ=typ.toLowerCase().replace('fleeting note','fleeting');if(!COLORS[typ])typ='concept';rows.push([title,typ,text.replace(/^---[\s\S]*?---/,'').slice(0,260),links,tags[0]||'vault'])}if(!rows.length)throw Error('No Markdown notes found');makeData(rows);rebuild();$('#graphmode').textContent=`LIVE VAULT · ${rows.length} NOTES`;$('#syncmsg').textContent='SYNCED';addFeed('Memory Manager','synced '+rows.length+' notes from Obsidian Local REST API.')}catch(err){$('#syncmsg').textContent='FAILED';addFeed('Memory Manager','could not reach Obsidian API: '+err.message)}}
-$('#ask').onclick=()=>{if(!selected)return;$('#chatinput').value='Tell me everything you know about '+selected.title;$('#chatinput').focus();$('#thinking').textContent='READY'};$('#focus').onclick=()=>{if(selected){controls.autoRotate=false;fly();addFeed('ARIA','set agent focus to '+selected.title+'.')}};$('#boost').onclick=()=>{if(selected){selected.confidence=Math.min(100,selected.confidence+5);select(selected);addFeed('Memory Manager','boosted confidence for '+selected.title+'.')}};$('#edit').onclick=()=>{if(selected)window.location.href='obsidian://open?vault=&file='+encodeURIComponent(selected.title)};
-function addBubble(text,who){let d=document.createElement('div');d.className='bubble '+(who==='u'?'u':'a');d.innerHTML=text+'<time>'+(who==='u'?'YOU':'ARIA')+' · now</time>';$('#chatbody').append(d);$('#chatbody').scrollTop=99999}
-$('#chatform').onsubmit=e=>{e.preventDefault();let v=$('#chatinput').value.trim();if(!v)return;addBubble(v,'u');$('#chatinput').value='';$('#thinking').textContent='THINKING…';$('#status').textContent='TRAVERSING MEMORY';setTimeout(()=>{let n=selected?selected.title:'the active HQ context';addBubble(`I’m traversing ${n}. I found the local graph, its nearby links, and the operator signals attached to them. I’ll stay inside reachable context and call out uncertainty instead of inventing a connection.`);$('#thinking').textContent='READY';$('#status').textContent='ONLINE / ACTIVE';if(selected)addFeed('ARIA','completed a two-hop traversal from '+selected.title+'.')},700)};
-setTimeout(()=>{$('#bootmsg').textContent='[ 00:00:03 ] neural link established · vault substrate ready'},1100);setTimeout(()=>$('#boot').classList.add('hide'),2700);
+['Machine Learning','concept','Ideas about systems that learn from data.',['AI','Attention Is All You Need'],'ai'],['Attention Is All You Need','resource','A paper explaining the Transformer architecture.',['Transformers','Machine Learning'],'ai'],['Transformers','concept','Sequence models built around attention and parallel computation.',['Machine Learning','LLM Systems'],'ai'],['LLM Systems','concept','Large language model architecture, inference, and evaluation.',['Transformers','Hermes Agent'],'ai'],['Hermes Agent','project','The operating layer that turns intent into tool-backed action.',['Personal HQ','LLM Systems'],'systems'],['Personal HQ','project','A living visual workspace for the agent and operator.',['Responsive Design','Hermes Agent','User Preferences'],'systems'],['User Preferences','fact','A sample preference note: explain assumptions and favor readable, practical interfaces.',['Personal HQ','Responsive Design'],'operator'],['Responsive Design','concept','Prioritize real viewport fit and legibility over oversized elements.',['User Preferences','Personal HQ'],'operator'],['Launch Checklist','project','A sample release checklist: test key flows, verify layout, then publish.',['Reliability','Personal HQ'],'systems'],['Reliability','concept','Systems should remain accessible and verified after changes.',['Personal HQ','Hermes Agent'],'systems'],['Open Questions','question','How should the graph write back to a real vault safely?',['Obsidian Vault','Personal HQ'],'operator'],['Obsidian Vault','resource','Markdown knowledge base with wikilinks, tags, and frontmatter.',['Open Questions','Personal HQ'],'operator']];
+let nodes=[],edges=[],scene,camera,renderer,controls,nodeMeshes=[],edgeMeshes=[],pulseMeshes=[],raycaster,mouse,clock;
+const browse=document.createElement('button');browse.className='tool';browse.id='browse';browse.textContent='Browse notes';browse.setAttribute('aria-expanded','false');
+$('.graphhud').append(browse);
+const noteList=document.createElement('div');noteList.id='notelist';noteList.className='panel notelist';noteList.hidden=true;$('#vault').append(noteList);
+browse.onclick=()=>{noteList.hidden=!noteList.hidden;browse.setAttribute('aria-expanded',String(!noteList.hidden))};
+function renderNotes(){noteList.replaceChildren();nodes.filter(n=>!n._hidden).forEach(n=>{const b=document.createElement('button');b.className='conn';b.textContent=n.title;b.setAttribute('aria-label','Inspect '+n.title);b.onclick=()=>select(n);noteList.append(b)});if(!noteList.childElementCount)noteList.textContent='No matching notes. Clear search or choose ALL.';}
+function loadScript(src){return new Promise((resolve,reject)=>{const s=document.createElement('script');s.src=src;const timer=setTimeout(()=>reject(Error('Graph library timed out')),8000);s.onload=()=>{clearTimeout(timer);resolve()};s.onerror=()=>{clearTimeout(timer);reject(Error('Graph library unavailable'))};document.head.append(s)})}
+let graphLoading=false;
+async function ensureGraph(){if(graphReady||graphLoading)return;graphLoading=true;try{await loadScript('https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js');await loadScript('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js');clock=new THREE.Clock();init3D();graphReady=true;}catch{if(renderer){renderer.dispose();renderer.domElement.remove();renderer=null;}$('#graphmode').textContent='DEMO · 3D unavailable — browse notes';noteList.hidden=false;browse.setAttribute('aria-expanded','true');}finally{graphLoading=false}}
+// DATA ADAPTER — pure normalization and deterministic layout; no DOM, storage or network.
+// Future adapters return {id,title,type,content,links,tag,path}, never credentials.
+const HQData = Object.freeze({
+  seed(text){let h=2166136261;for(const c of text)h=Math.imul(h^c.charCodeAt(0),16777619);h=Math.imul(h^(h>>>16),2246822507);h=Math.imul(h^(h>>>13),3266489909);return((h^(h>>>16))>>>0)/4294967296},
+  build(rows,source='demo'){
+    const clean=s=>String(s??'').slice(0,6000);
+    const notes=rows.slice(0,180).map(r=>Array.isArray(r)?{id:r[0],title:r[0],type:r[1],content:r[2],links:r[3],tag:r[4]}:r)
+      .map(r=>({id:clean(r.id),title:clean(r.title||r.id),type:Object.hasOwn(COLORS,r.type)?r.type:'concept',content:clean(r.content),links:Array.isArray(r.links)?r.links.map(clean):[],tag:clean(r.tag||'vault'),path:clean(r.path),source,confidence:null}))
+      .filter((n,i,all)=>n.id&&all.findIndex(x=>x.id===n.id)===i).sort((a,b)=>a.id<b.id?-1:1);
+    const key=s=>s.replace(/\.md$/i,'').toLowerCase();
+    const byId=new Map(notes.map(n=>[key(n.id),n]));
+    const resolve=(link,n)=>{const k=key(link);const folder=n.id.includes('/')?n.id.slice(0,n.id.lastIndexOf('/')+1):'';const exact=byId.get(k)||byId.get(key(folder+link));if(exact)return exact;const matches=notes.filter(x=>key(x.title)===k);return matches.length===1?matches[0]:null};
+    const connections=[],seen=new Set();
+    for(const n of notes){n.unresolved=[];n.links=n.links.map(link=>{const target=resolve(link,n);if(!target){n.unresolved.push(link);return null}return target.id}).filter(Boolean);for(const id of n.links){const v=notes.find(x=>x.id===id);if(v===n)continue;const pair=[n.id,id].sort();const k=JSON.stringify(pair);if(!seen.has(k)){seen.add(k);connections.push({a:n,b:v,type:'WIKILINK',t:HQData.seed(k)})}}}
+    for(const n of notes){n.x=(HQData.seed(n.id+'x')-.5)*220;n.y=(HQData.seed(n.id+'y')-.5)*140;n.z=(HQData.seed(n.id+'z')-.5)*90;}
+    for(let step=0;step<100;step++){
+      const force=new Map(notes.map(n=>[n,{x:-n.x*.007,y:-n.y*.007,z:-n.z*.007}]));
+      for(let i=0;i<notes.length;i++)for(let j=i+1;j<notes.length;j++){const a=notes[i],b=notes[j],dx=a.x-b.x,dy=a.y-b.y,dz=a.z-b.z;const d=Math.max(8,Math.hypot(dx,dy,dz));const rep=600/(d*d);for(const [axis,v] of [['x',dx],['y',dy],['z',dz]]){force.get(a)[axis]+=v/d*rep;force.get(b)[axis]-=v/d*rep;}}
+      for(const e of connections)for(const axis of ['x','y','z']){const f=(e.b[axis]-e.a[axis])*.003;force.get(e.a)[axis]+=f;force.get(e.b)[axis]-=f;}
+      for(const n of notes)for(const axis of ['x','y','z'])n[axis]+=force.get(n)[axis]*(1-step/120);
+    }
+    return {nodes:notes,edges:connections,source};
+  }
+});
+let dataSource='demo';
+function makeData(rows=fallback,source='demo'){
+  ({nodes,edges}=HQData.build(rows,source));dataSource=source;
+  $('#gstats').textContent=`${nodes.length} NOTES · ${edges.length} LINKS · ${new Set(nodes.map(n=>n.tag)).size} CLUSTERS`;
+}
+// GRAPH RENDERER — optional enhancement, loaded only inside The Vault.
+let animationFrame=0,frameTime=0,orbit=false;
+const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
+const graphLabels=document.createElement('div');graphLabels.id='graphlabels';$('#graph').append(graphLabels);
+function init3D(){
+  scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(55,1,.1,2000);
+  renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'low-power'});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));$('#graph').appendChild(renderer.domElement);
+  renderer.domElement.setAttribute('aria-label','3D memory graph. Use Browse notes for keyboard navigation.');
+  controls=new THREE.OrbitControls(camera,renderer.domElement);controls.enableDamping=false;controls.autoRotate=false;controls.autoRotateSpeed=.12;controls.minDistance=25;controls.maxDistance=700;
+  controls.addEventListener('change',draw);
+  scene.add(new THREE.AmbientLight(0xffffff,.8));
+  const light=new THREE.PointLight(0x77ccff,.9);light.position.set(50,80,100);scene.add(light);
+  const stars=new THREE.BufferGeometry(),arr=new Float32Array(1500);
+  for(let i=0;i<arr.length;i++)arr[i]=(HQData.seed('star-'+i)-.5)*850;
+  stars.setAttribute('position',new THREE.BufferAttribute(arr,3));
+  scene.add(new THREE.Points(stars,new THREE.PointsMaterial({color:0x6688aa,size:.3,transparent:true,opacity:.35})));
+  raycaster=new THREE.Raycaster();mouse=new THREE.Vector2();rebuild();resize();fitGraph();
+  new ResizeObserver(resize).observe($('#graph'));
+  let down=null;
+  renderer.domElement.addEventListener('pointerdown',e=>{down={x:e.clientX,y:e.clientY}});
+  renderer.domElement.addEventListener('pointerup',e=>{if(down&&Math.hypot(e.clientX-down.x,e.clientY-down.y)<5)pick(e);down=null});
+  renderer.domElement.addEventListener('webglcontextlost',e=>{e.preventDefault();cancelAnimationFrame(animationFrame);animationFrame=0;graphReady=false;renderer=null;$('#graphmode').textContent='3D context lost · browse notes or reload';noteList.hidden=false;browse.setAttribute('aria-expanded','true')});
+  updateAnimation();
+}
+function mat(hex){return new THREE.MeshPhongMaterial({color:hex,emissive:hex,emissiveIntensity:.6,transparent:true,opacity:1,shininess:70})}
+function rebuild(){
+  if(!scene)return;
+  [...nodeMeshes,...edgeMeshes,...pulseMeshes].forEach(o=>{scene.remove(o);o.geometry.dispose();o.material.dispose()});
+  nodeMeshes=[];edgeMeshes=[];pulseMeshes=[];graphLabels.replaceChildren();
+  for(const n of nodes){const degree=edges.filter(e=>e.a===n||e.b===n).length;
+    const m=new THREE.Mesh(new THREE.SphereGeometry(.72+Math.min(degree,6)*.05,20,14),mat(COLORS[n.type]));m.position.set(n.x,n.y,n.z);m.userData=n;scene.add(m);nodeMeshes.push(m);
+    const label=document.createElement('span');label.textContent=n.title;graphLabels.append(label);m.userData.label=label;
+  }
+  for(const e of edges){const a=new THREE.Vector3(e.a.x,e.a.y,e.a.z),b=new THREE.Vector3(e.b.x,e.b.y,e.b.z);const curve=new THREE.LineCurve3(a,b);
+    const c=new THREE.Color(COLORS[e.a.type]).lerp(new THREE.Color(COLORS[e.b.type]),.5);
+    const line=new THREE.Line(new THREE.BufferGeometry().setFromPoints([a,b]),new THREE.LineBasicMaterial({color:c,transparent:true,opacity:.22}));line.userData=e;scene.add(line);edgeMeshes.push(line);
+    const p=new THREE.Mesh(new THREE.SphereGeometry(.17,8,6),new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:.7}));p.userData={e,curve,phase:e.t};scene.add(p);pulseMeshes.push(p);
+  }
+  applyFilter();
+}
+function draw(){
+  if(!renderer||!$('#vault').classList.contains('on')||document.hidden)return;
+  const t=frameTime;
+  for(const m of nodeMeshes){const n=m.userData;m.visible=!n._hidden;m.material.opacity=n._dim?.25:1;
+    const p=m.position.clone().project(camera),x=(p.x+1)*$('#graph').clientWidth/2,y=(1-p.y)*$('#graph').clientHeight/2;
+    n.label.hidden=!showLabels||!m.visible||p.z>1||p.z< -1||x<10||x>$('#graph').clientWidth-140||y<10||y>$('#graph').clientHeight-30;
+    n.label.style.transform=`translate(${x+8}px,${y-8}px)`;
+  }
+  for(const line of edgeMeshes){const e=line.userData;line.visible=!e.a._hidden&&!e.b._hidden;line.material.opacity=selected&&(e.a===selected||e.b===selected)?.65:.2;}
+  for(const p of pulseMeshes){const d=p.userData;p.visible=!simPaused&&!reducedMotion.matches&&!d.e.a._hidden&&!d.e.b._hidden;p.position.copy(d.curve.getPoint((t*.035+d.phase)%1));}
+  renderer.render(scene,camera);
+}
+function animate(now){animationFrame=0;if(!renderer||!$('#vault').classList.contains('on')||document.hidden)return;frameTime=now/1000;controls.autoRotate=orbit&&!simPaused&&!reducedMotion.matches;controls.update();draw();if(!simPaused&&!reducedMotion.matches)animationFrame=requestAnimationFrame(animate)}
+function updateAnimation(){cancelAnimationFrame(animationFrame);animationFrame=0;draw();if(renderer&&$('#vault').classList.contains('on')&&!document.hidden&&!simPaused&&!reducedMotion.matches)animationFrame=requestAnimationFrame(animate)}
+function resize(){if(!renderer)return;const el=$('#graph');if(!el.clientWidth||!el.clientHeight)return;camera.aspect=el.clientWidth/el.clientHeight;camera.updateProjectionMatrix();renderer.setSize(el.clientWidth,el.clientHeight);draw()}
+function fitGraph(){if(!renderer)return;const visible=nodes.filter(n=>!n._hidden);const box=new THREE.Box3();for(const n of visible)box.expandByPoint(new THREE.Vector3(n.x,n.y,n.z));if(!visible.length)return;const center=box.getCenter(new THREE.Vector3()),size=box.getSize(new THREE.Vector3());const distance=Math.max(60,Math.max(size.y,size.x/camera.aspect)/(2*Math.tan(camera.fov*Math.PI/360))+size.z)*1.3;controls.target.copy(center);camera.position.copy(center.clone().add(new THREE.Vector3(0,3,distance)));controls.update();draw()}
+function pick(e){if(!renderer)return;const r=renderer.domElement.getBoundingClientRect();mouse.x=((e.clientX-r.left)/r.width)*2-1;mouse.y=-((e.clientY-r.top)/r.height)*2+1;raycaster.setFromCamera(mouse,camera);const hit=raycaster.intersectObjects(nodeMeshes.filter(m=>m.visible))[0];if(hit)select(hit.object.userData);else deselect()}
+reducedMotion.addEventListener('change',updateAnimation);document.addEventListener('visibilitychange',updateAnimation);
+let selectionOpener;
+function select(n){
+ if(!selected)selectionOpener=document.activeElement;selected=n;const linked=adjacent(n);
+ nodeMeshes.forEach(m=>{m.userData._dim=m.userData!==n&&!linked.includes(m.userData)});
+ $('#dcolor').style.color=COLORS[n.type];$('#dcolor').style.background=COLORS[n.type];$('#dtype').textContent=n.type.toUpperCase();$('#dtitle').textContent=n.title;
+ $('#dmeta').textContent=`Unverified · ${n.source==='demo'?'Demo memory':'Read-only snapshot'} · #${n.tag}${n.path?' · '+n.path:''}`;
+ $('#dcontent').textContent=n.content||'This note has no text excerpt.';$('#connections').replaceChildren();
+ for(const v of linked){const b=action(v.title,()=>select(v));b.className='conn';$('#connections').append(b)}
+ if(!linked.length)$('#connections').append(el('p','No resolved connections.','muted'));
+ if(n.unresolved.length)$('#connections').append(el('p',`Unresolved: ${n.unresolved.join(', ')}. These targets are not in this snapshot.`,'muted'));
+ $('#edit').disabled=n.source==='demo'||!$('#vaultname').value.trim();$('#edit').textContent=n.source==='demo'?'Demo · no source file':$('#vaultname').value.trim()?'Open in Obsidian':'Set vault name in Settings';
+ $('#detail').hidden=false;$('#detail').classList.add('show');$('#detail').setAttribute('aria-label','Memory details');$('#close').focus();draw();
+}
+function deselect(){const wasSelected=selected;selected=null;nodeMeshes.forEach(m=>m.userData._dim=false);$('#detail').classList.remove('show');$('#detail').hidden=true;if(wasSelected&&selectionOpener?.isConnected)selectionOpener.focus();draw();}
+function fly(){if(!selected||!renderer)return;const target=new THREE.Vector3(selected.x,selected.y,selected.z);camera.position.copy(target.clone().add(new THREE.Vector3(0,0,65)));controls.target.copy(target);controls.update();draw()}
+function applyFilter(){
+  const q=$('#search').value.trim().toLowerCase();
+  nodes.forEach(n=>{const category=activeFilter==='all'||n.type===activeFilter||(activeFilter==='orphan'&&!edges.some(e=>e.a===n||e.b===n));n._hidden=!(category&&(!q||[n.title,n.content,n.tag].join(' ').toLowerCase().includes(q)))});
+  if(selected?._hidden)deselect();
+  $$('.pill').forEach(p=>{const on=(p.dataset.filter||'orphan')===activeFilter;p.classList.toggle('active',on);p.setAttribute('aria-pressed',String(on))});
+  renderNotes();draw();
+  $('#resultcount').textContent=`${nodes.filter(n=>!n._hidden).length} of ${nodes.length} notes`;
+}
+function addFeed(who,text){recordActivity(who,text)}
+function navigate(view){
+  if(!document.getElementById(view)?.classList.contains('view'))return;
+  $$('.nav button').forEach(x=>{const on=x.dataset.view===view;x.classList.toggle('on',on);if(on)x.setAttribute('aria-current','page');else x.removeAttribute('aria-current')});
+  $$('.view').forEach(v=>v.classList.toggle('on',v.id===view));
+  if(view==='vault')ensureGraph();refreshHeader(view);resize();updateAnimation();
+}
+$$('.nav button').forEach(b=>{b.setAttribute('aria-label',b.querySelector('em').textContent);b.title=b.querySelector('em').textContent;b.onclick=()=>navigate(b.dataset.view)});
+function graphTool(id,label,handler){const b=document.createElement('button');b.id=id;b.className='tool';b.textContent=label;b.onclick=handler;$('.graphhud').append(b);return b}
+graphTool('clearfilters','Clear filters',()=>{activeFilter='all';$('#search').value='';applyFilter()});
+graphTool('fitgraph','Fit graph',fitGraph);
+graphTool('orbit','Orbit off',()=>{orbit=!orbit;$('#orbit').textContent=orbit?'Orbit on':'Orbit off';$('#orbit').setAttribute('aria-pressed',String(orbit));updateAnimation()});
+graphTool('pause','Pause motion',()=>{workspace.prefs.motion=!workspace.prefs.motion;saveWorkspace();applyPreferences()});
+graphTool('labels','Labels on',()=>{workspace.prefs.labels=!workspace.prefs.labels;saveWorkspace();applyPreferences()});
+const resultCount=document.createElement('span');resultCount.id='resultcount';resultCount.className='tiny';resultCount.setAttribute('role','status');$('.graphhud').append(resultCount);
+for(const type of ['person','resource','fleeting']){const b=document.createElement('button');b.className='pill';b.dataset.filter=type;b.textContent=type.toUpperCase();$('.pills').insertBefore(b,$('#orphan'))}
+$('#close').onclick=deselect;$('#search').oninput=applyFilter;$('#search').setAttribute('aria-label','Search memories');
+$$('.pill').forEach(p=>p.onclick=()=>{activeFilter=p.dataset.filter||'orphan';applyFilter()});
+document.addEventListener('keydown',e=>{
+  if(!$('#vault').classList.contains('on')||e.target.closest('input,textarea,select,button,[contenteditable],dialog')||e.ctrlKey||e.metaKey||e.altKey)return;
+  if(e.key==='r'||e.key==='f')fitGraph();
+  if(e.key==='l')$('#labels').click();
+  if(e.key===' '){e.preventDefault();$('#pause').click()}
+});
+// OBSIDIAN ADAPTER — read-only loopback snapshot; no tokens or notes persisted.
+let importController=null,snapshotAt=null;
+const HQObsidian=Object.freeze({
+ base(value){
+  let url;try{url=new URL(value)}catch{throw Error('Use a loopback URL such as http://localhost:27123')}
+  if(!['http:','https:'].includes(url.protocol)||!['localhost','127.0.0.1','[::1]'].includes(url.hostname)||url.username||url.password||url.pathname!=='/'||url.search||url.hash)throw Error('Only a loopback origin is allowed (localhost, 127.0.0.1 or [::1]); no credentials, path or query in the URL.');
+  return url.origin;
+ },
+ async snapshot(base,token,signal){
+  let requests=0;const notes=[],queue=[''],visited=new Set();
+  async function read(path,isListing){
+   if(++requests>244)throw Error('Request limit reached; keep the previous snapshot.');
+   const url=base+'/vault/'+path.split('/').map(encodeURIComponent).join('/');
+   const r=await fetch(url,{method:'GET',headers:token?{Authorization:'Bearer '+token}:{},signal,redirect:'error',credentials:'omit',cache:'no-store'});
+   if(!r.ok)throw Error('HTTP '+r.status);
+   const limit=isListing?262144:65536;const reader=r.body.getReader(),decoder=new TextDecoder();let text='',bytes=0;
+   try{while(true){const {done,value}=await reader.read();if(done)break;bytes+=value.byteLength;if(bytes>limit){await reader.cancel();throw Error('Response exceeds safe size limit')}text+=decoder.decode(value,{stream:true})}return text+decoder.decode();}finally{reader.releaseLock()}
+  }
+  while(queue.length&&notes.length<180&&visited.size<64){
+   const dir=queue.shift();if(visited.has(dir))continue;visited.add(dir);
+   const listing=JSON.parse(await read(dir,true)),files=Array.isArray(listing)?listing:listing.files;
+   if(!Array.isArray(files))throw Error('Unsupported vault listing');
+   const paths=files.map(f=>typeof f==='string'?f:f?.path||f?.name).filter(p=>typeof p==='string').sort();
+   for(const entry of paths){
+    if(entry.startsWith('/')||entry.includes('\\')||entry.includes('\u0000')||entry.split('/').some(p=>p==='..'||p==='.'||p.startsWith('.')))continue;
+    const path=dir+entry;
+    if(path.endsWith('/')){if(queue.length<64)queue.push(path);continue}
+    if(!/\.md$/i.test(path)||notes.some(n=>n.path===path))continue;
+    const text=(await read(path,false)).replace(/\r\n?/g,'\n');const fm=text.match(/^---\n([\s\S]*?)\n---(?:\n|$)/)?.[1]||'';
+    const type=(fm.match(/^type:\s*["']?([a-z -]+)/im)?.[1]||'concept').trim().replace('fleeting note','fleeting');
+    const links=[...text.matchAll(/\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|[^\]]+)?\]\]/g)].map(m=>m[1].trim());
+    notes.push({id:path.replace(/\.md$/i,''),path,title:path.split('/').pop().replace(/\.md$/i,''),type,content:text.replace(/^---\n[\s\S]*?\n---(?:\n|$)/,'').slice(0,6000),links,tag:text.match(/(?:^|\s)#([a-zA-Z0-9_-]+)/)?.[1]||'vault'});
+    if(notes.length>=180)break;
+   }
+  }
+  return notes;
+ }
+});
+function replaceMemories(rows,source){
+ deselect();focusMemory=null;$('#agentfocus').textContent='No memory focus selected. Source changed.';activeFilter='all';$('#search').value='';makeData(rows,source);if(renderer)rebuild();applyFilter();updateCounters();fitGraph();
+ $('#chatbody').replaceChildren();addBubble('Memory source changed. Previous conversation cleared from this tab.');
+ $('#graphmode').textContent=source==='demo'?'DEMO MEMORY · NO LIVE CONNECTION':`READ-ONLY SNAPSHOT · ${snapshotAt.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})} · not auto-synced`;
+}
+async function syncVault(){
+ if(importController)return;
+ let base;try{base=HQObsidian.base($('#apiurl').value.trim())}catch(err){$('#syncmsg').textContent=err.message;$('#apitoken').value='';return}
+ const controller=new AbortController();importController=controller;const timer=setTimeout(()=>controller.abort(),20000);
+ const token=$('#apitoken').value.trim();$('#apitoken').value='';$('#sync').disabled=true;$('#cancel-sync').hidden=false;$('#syncmsg').textContent='Reading local vault… (20 second limit)';
+ try{
+  const rows=await HQObsidian.snapshot(base,token,controller.signal);if(controller.signal.aborted)throw Error('Cancelled');
+  if(!rows.length)throw Error('No Markdown notes found');snapshotAt=new Date();replaceMemories(rows,'snapshot');
+  $('#syncmsg').textContent=`Loaded ${rows.length} notes into this tab. Read-only; capped at 180 notes / 64 folders; excerpts up to 6,000 characters.`;recordActivity('Operator','loaded a read-only Obsidian snapshot: '+rows.length+' notes.');
+ }catch(err){$('#syncmsg').textContent=`${controller.signal.aborted?'Cancelled or timed out':err.message}. Kept previous data. Check Obsidian, plugin URL, token, certificate and browser CORS/local-network access. No write was attempted.`;}
+ finally{clearTimeout(timer);importController=null;$('#sync').disabled=false;$('#cancel-sync').hidden=true;}
+}
+$('#sync').onclick=syncVault;$('#sync').textContent='Load read-only snapshot';$('#syncmsg').setAttribute('role','status');
+const cancelSync=action('Cancel read',()=>importController?.abort());cancelSync.id='cancel-sync';cancelSync.hidden=true;$('#sync').after(cancelSync);
+const demoButton=action('Use demo memories',()=>{if(importController)return;snapshotAt=null;replaceMemories(fallback,'demo');$('#apitoken').value='';$('#syncmsg').textContent='Demo memories restored. No live connection.'});$('#syncmsg').after(demoButton);
+$('#apiurl').previousElementSibling.setAttribute('for','apiurl');$('#apitoken').previousElementSibling.setAttribute('for','apitoken');$('#apitoken').autocomplete='off';
+$('#apiurl').parentElement.querySelector('p').textContent='Optional: manually read Obsidian’s Local REST API on this device. No live connection is configured. Loopback only; token is cleared after each read and never saved. Note excerpts stay in this tab. HTTPS Pages may be blocked by CORS, certificates or local-network policy; the demo remains usable. Never paste cloud API keys here.';
+const vaultLabel=el('label','Vault name (optional, for opening source files)','tiny');vaultLabel.htmlFor='vaultname';const vaultName=el('input');vaultName.className='input';vaultName.id='vaultname';vaultName.maxLength=100;vaultName.autocomplete='off';$('#apiurl').parentElement.append(vaultLabel,vaultName);
+$('#edit').onclick=()=>{if(selected?.source==='snapshot'&&vaultName.value.trim())window.location.href='obsidian://open?vault='+encodeURIComponent(vaultName.value.trim())+'&file='+encodeURIComponent(selected.path)};
+vaultName.oninput=()=>{if(selected){$('#edit').disabled=selected.source==='demo'||!vaultName.value.trim();$('#edit').textContent=selected.source==='demo'?'Demo · no source file':vaultName.value.trim()?'Open in Obsidian':'Set vault name in Settings'}};
+// COMMS — deterministic local commands, never simulated model responses.
+const commsToggle=action('Expand Comms',()=>setComms($('.chat').hidden));commsToggle.id='comms-toggle';commsToggle.setAttribute('aria-controls','comms-chat');$('.comms .ph').append(commsToggle);$('.chat').id='comms-chat';
+function setComms(open){$('.chat').hidden=!open;$('.comms').classList.toggle('expanded',open);commsToggle.textContent=open?'Collapse Comms':'Expand Comms';commsToggle.setAttribute('aria-expanded',String(open));if(open)$('#chatinput').focus()}
+setComms(false);$('#thinking').textContent='LOCAL';$('#chatinput').setAttribute('aria-label','Comms command');$('#chatinput').maxLength=1000;$('#chatinput').placeholder='/help · /find · /task · /context';
+$('#chatbody').setAttribute('role','log');$('#chatbody').setAttribute('aria-label','Local Comms conversation');$('#chatbody').setAttribute('aria-live','polite');$('#chatbody').replaceChildren();
+function addBubble(text,who='a'){
+ const d=el('div',undefined,'bubble '+(who==='u'?'u':'a'));d.append(document.createTextNode(text),el('time',(who==='u'?'YOU':'ARIA / LOCAL')+' · '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})));$('#chatbody').append(d);
+ while($('#chatbody').childElementCount>50)$('#chatbody').firstElementChild.remove();$('#chatbody').scrollTop=$('#chatbody').scrollHeight;return d;
+}
+const commsHelp='Local commands: /status, /find <words>, /context, /focus <exact title>, /task <title>, /clear. No live model or agent execution is connected. Tasks stay in this browser.';
+addBubble('ARIA HQ is ready. This is a local command terminal, not an AI chat connection. Type /help for available actions.');
+function adjacent(n){return edges.filter(e=>e.a===n||e.b===n).map(e=>e.a===n?e.b:e.a)}
+function contextReply(n){
+ if(!n){addBubble('Select a memory in The Vault, or use /find <words>, then /context.');return}
+ const neighbors=adjacent(n),second=new Set(neighbors.flatMap(adjacent).filter(x=>x!==n&&!neighbors.includes(x)));
+ const d=addBubble(`${n.title} — ${n.source==='demo'?'DEMO':'READ-ONLY SNAPSHOT'} · Unverified\n${n.content||'No text in this note.'}\n\nLinked context: ${neighbors.map(x=>x.title).join(', ')||'None'}.${workspace.prefs.verbose?'\nTwo-hop context: '+([...second].map(x=>x.title).join(', ')||'None')+'\nUnresolved links: '+(n.unresolved.join(', ')||'None'):''}\nThis is stored note text, not a generated answer.`);
+ neighbors.slice(0,6).forEach(v=>d.append(action('Open memory '+v.title,()=>openMemory(v.id))));recordActivity('Comms','read local context for '+n.title);
+}
+function runCommand(value){
+ const [command,...rest]=value.split(/\s+/),arg=rest.join(' ').trim();
+ switch(command.toLowerCase()){
+ case '/help':addBubble(commsHelp);break;
+ case '/status':addBubble(`${workspace.tasks.filter(t=>!t.done).length} open tasks · ${nodes.length} ${dataSource==='demo'?'demo':'snapshot'} memories. Focus: ${focusMemory?.title||'not set'}. No live agent. ${storageIssue||'Workspace is local to this browser.'}`);break;
+ case '/clear':$('#chatbody').replaceChildren();addBubble('Conversation cleared from this tab.');break;
+ case '/find':{
+  if(!arg){addBubble('Usage: /find <title, tag or content>');break}
+  const matches=nodes.filter(n=>[n.title,n.tag,n.content].join(' ').toLowerCase().includes(arg.toLowerCase()));const d=addBubble(`${matches.length} matching memories${matches.length>8?' · showing first 8':''}.`);
+  matches.slice(0,8).forEach(n=>d.append(action('Open memory '+n.title,()=>openMemory(n.id))));break;
+ }
+ case '/context':contextReply(selected||focusMemory);break;
+ case '/focus':{const n=nodes.find(n=>n.title.toLowerCase()===arg.toLowerCase());if(!n){addBubble('Use /focus <exact memory title>. Find a title with /find first.');break}setFocus(n);addBubble('Operator focus set to '+n.title+'. No agent was dispatched.');break}
+ case '/task':{const t=createTask(arg,'P1',(selected||focusMemory)?.id||'');addBubble(t?'Created local task: '+t.title+'. No agent was dispatched.':'Usage: /task <title>. Maximum 200 tasks.');break}
+ default:addBubble('No live model is connected, so I cannot answer free-form requests. '+commsHelp);
+ }
+ $('#chatbody').scrollTop=$('#chatbody').scrollHeight;
+}
+$('#chatform').onsubmit=e=>{e.preventDefault();const v=$('#chatinput').value.trim();if(!v)return;addBubble(v,'u');$('#chatinput').value='';runCommand(v)};
+$('#ask').textContent='Read in Comms';$('#ask').onclick=()=>{if(selected){setComms(true);contextReply(selected)}};
+// LOCAL OPERATIONS — no remote agent execution or cross-device sync.
+const STORAGE_KEY='aria.hq.v1';
+const initialTasks=[
+ {id:'demo-hq',title:'Build HQ MVP',priority:'P0',context:'Personal HQ',done:false,demo:true},
+ {id:'demo-memory',title:'Index initial memory',priority:'P1',context:'Obsidian Vault',done:false,demo:true},
+ {id:'demo-preferences',title:'Establish user preferences',priority:'P1',context:'User Preferences',done:false,demo:true}
+];
+let workspace={version:1,tasks:initialTasks.map(t=>({...t})),mission:$('.mission h2').textContent,prefs:{remember:true,verbose:false,motion:true,labels:true}};
+let storageIssue='',focusMemory=null,focusAgent='ARIA';
+try{
+ const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'null');
+ if(saved){
+  if(saved.version!==1||!Array.isArray(saved.tasks)||!saved.tasks.every(t=>t&&typeof t.id==='string'&&typeof t.title==='string'))throw Error('Invalid saved workspace');
+  workspace.tasks=saved.tasks.slice(0,200).map((t,i)=>({id:'saved-'+i,title:t.title.slice(0,160),priority:['P0','P1','P2'].includes(t.priority)?t.priority:'P1',context:typeof t.context==='string'?t.context.slice(0,500):'',done:t.done===true,demo:t.demo===true}));
+  if(typeof saved.mission==='string'&&saved.mission.trim())workspace.mission=saved.mission.slice(0,300);
+  for(const key of Object.keys(workspace.prefs))if(typeof saved.prefs?.[key]==='boolean')workspace.prefs[key]=saved.prefs[key];
+ }
+}catch{storageIssue='Saved workspace unavailable. Using demo defaults; changes may be session-only.';}
+function saveWorkspace(){
+ if(!workspace.prefs.remember)return false;
+ try{localStorage.setItem(STORAGE_KEY,JSON.stringify(workspace));storageIssue='';updateStorageStatus();return true}
+ catch{storageIssue='Storage unavailable. Changes are session-only; keep this tab open.';updateStorageStatus();return false}
+}
+function updateStorageStatus(){if($('#storage-status'))$('#storage-status').textContent=storageIssue||(workspace.prefs.remember?'Saved in this browser only · no account or cloud sync':'Session-only mode · reload discards changes')}
+function el(tag,text,className){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(className)e.className=className;return e}
+function action(label,fn){const b=el('button',label,'tool');b.type='button';b.onclick=fn;return b}
+const activity=[];
+function recordActivity(who,text){
+ activity.unshift({who,text,time:new Date()});activity.splice(40);$('#feed').replaceChildren();
+ for(const item of activity){const row=el('div',undefined,'feedrow'),p=el('p');p.append(el('b',item.who+' '),document.createTextNode(item.text));const time=el('time',item.time.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}));time.dateTime=item.time.toISOString();row.append(el('i'),p,time);$('#feed').append(row)}
+}
+const dialog=el('dialog');dialog.id='hq-dialog';dialog.setAttribute('aria-labelledby','dialog-title');document.body.append(dialog);
+let dialogOpener=null;
+function openDialog(title,build){
+ dialogOpener=document.activeElement;dialog.replaceChildren();const head=el('div',undefined,'ph');const heading=el('h2',title,'pt');heading.id='dialog-title';head.append(heading,action('Close dialog',()=>dialog.close()));const body=el('div',undefined,'pb');dialog.append(head,body);build(body);dialog.showModal();
+}
+dialog.addEventListener('close',()=>{if(dialogOpener?.isConnected)dialogOpener.focus()});
+function updateCounters(){
+ $('#done').textContent=String(workspace.tasks.filter(t=>t.done).length);
+ const stats=$$('#command .stat');stats[1].querySelector('small').textContent='Open tasks';stats[1].querySelector('strong').textContent=String(workspace.tasks.filter(t=>!t.done).length);
+ stats[2].querySelector('small').textContent='Notes available';stats[2].querySelector('strong').textContent=String(nodes.length);
+ $('.mission h2').textContent=workspace.mission;
+}
+function renderTasks(){
+ $('#tasks').replaceChildren();
+ for(const t of workspace.tasks){const b=el('button',undefined,'task');b.type='button';b.setAttribute('aria-label','Inspect task '+t.title);const text=el('div');text.append(el('b',t.title),el('small',`${t.demo?'DEMO':'LOCAL'} · ${t.done?'Completed':'Open'}${t.context?' · '+t.context:''}`));b.append(text,el('strong',t.priority,'priority'));b.onclick=()=>inspectTask(t);$('#tasks').append(b)}
+ if(!workspace.tasks.length)$('#tasks').append(el('p','No tasks yet. Create one to start a local work queue.','muted'));
+ updateCounters();
+}
+function createTask(title,priority='P1',context=''){
+ title=title.trim().slice(0,160);if(!title)return null;if(workspace.tasks.length>=200)return null;
+ const task={id:crypto.randomUUID(),title,priority:['P0','P1','P2'].includes(priority)?priority:'P1',context,done:false,demo:false};workspace.tasks.unshift(task);saveWorkspace();renderTasks();recordActivity('Operator','created task: '+title);return task;
+}
+function newTask(context=''){
+ openDialog('New local task',body=>{
+  const form=el('form');form.innerHTML='<label for="task-title">Task title</label><input class="input" id="task-title" required maxlength="160" autocomplete="off"><label for="task-priority">Priority</label><select class="input" id="task-priority"><option>P0</option><option selected>P1</option><option>P2</option></select><label for="task-context">Memory context</label><select class="input" id="task-context"><option value="">No linked memory</option></select><p class="muted">Local planning only. Creating a task does not dispatch an agent.</p><p id="task-error" role="alert"></p><button class="tool" type="submit">Create task</button>';
+  body.append(form);for(const n of nodes){const o=el('option',n.title);o.value=n.id;$('#task-context').append(o)}$('#task-context').value=context;
+  form.onsubmit=e=>{e.preventDefault();const t=createTask($('#task-title').value,$('#task-priority').value,$('#task-context').value);if(t)dialog.close();else $('#task-error').textContent='Enter a non-empty title. The local workspace supports up to 200 tasks.'};
+ });$('#task-title').focus();
+}
+function openMemory(id){const n=nodes.find(n=>n.id===id);if(!n)return false;activeFilter='all';$('#search').value='';applyFilter();navigate('vault');select(n);return true}
+function inspectTask(t){
+ openDialog(t.title,body=>{
+  body.append(el('p',`${t.demo?'Demo task':'Local task'} · ${t.priority} · ${t.done?'Completed':'Open'}`));
+  body.append(action(t.done?'Reopen task':'Mark complete',()=>{t.done=!t.done;saveWorkspace();renderTasks();recordActivity('Operator',(t.done?'completed':'reopened')+' task: '+t.title);dialog.close()}));
+  if(t.context){body.append(el('p','Memory context: '+t.context));const b=action('Open memory context',()=>{dialog.close();openMemory(t.context)});b.disabled=!nodes.some(n=>n.id===t.context);body.append(b);if(b.disabled)body.append(el('p','This memory is not in the current snapshot. Reconnect its source first.','muted'))}
+ });
+}
+$('#tasks').previousElementSibling.append(action('New task',()=>newTask()));
+const focusLine=el('div',undefined,'focusline');focusLine.append(el('span','OPERATOR FOCUS','eyebrow'),el('p','No memory focus selected. Explore The Vault or open a task.'));focusLine.querySelector('p').id='agentfocus';$('.mission').append(focusLine);
+function setFocus(n){focusMemory=n;orbit=false;if(controls)controls.autoRotate=false;$('#orbit').textContent='Orbit off';$('#orbit').setAttribute('aria-pressed','false');$('#agentfocus').textContent=`${focusAgent} · ${n.title} · ${n.source==='demo'?'demo context':'read-only snapshot'}`;recordActivity('Operator','set focus to '+n.title+' for '+focusAgent);fly();}
+$('#focus').textContent='Set focus';$('#focus').onclick=()=>{if(selected)setFocus(selected)};
+$('#boost').textContent='Create task';$('#boost').onclick=()=>{if(selected)newTask(selected.id)};
+$('#edit').disabled=true;$('#edit').textContent='Demo · no source file';
+makeData();applyFilter();renderTasks();recordActivity('HQ','opened local workspace. Demo memories loaded; no live agent connected.');
+// SURFACE CONTROLS — retain every original zone, make its state explicit.
+const viewCopy={
+ command:['Good to see you, operator.','A local workspace for intent, memory, and your next useful action.'],
+ vault:['The Vault','Demo memories until connected · drag to orbit, scroll to zoom · keyboard: R fit, L labels.'],
+ floor:['Agent Floor','Role playbooks, not running processes. Choose a focus before handing work to a real agent.'],
+ missions:['Mission Control','Plan locally. Link tasks to memory and mark progress yourself.'],
+ analytics:['Analytics Deck','Illustrative charts only. Live model and system telemetry are not connected.'],
+ settings:['Identity & Settings','Tune your local workspace. No settings here change Hermes or Obsidian.']
+};
+function refreshHeader(view){$('.top h1').textContent=viewCopy[view][0];$('.top p').textContent=viewCopy[view][1]}
+const statusNotice=el('p',undefined,'tiny');statusNotice.id='storage-status';statusNotice.setAttribute('role','status');$('.mission').append(statusNotice);updateStorageStatus();
+$('#status').textContent='DEMO / LOCAL';$('.sidefoot').replaceChildren(el('span','LOCAL WORKSPACE','eyebrow'),el('p','No live agent connected'));
+$('#feed').setAttribute('aria-label','Session activity');$('#feed').setAttribute('role','log');$('#feed').setAttribute('aria-live','polite');
+const profile=$('#settings .panel .pb');const missionForm=el('form');missionForm.innerHTML='<label class="tiny" for="mission-input">Mission statement</label><textarea id="mission-input" class="input" rows="3" maxlength="300" required></textarea><button class="tool" type="submit">Save mission</button><span id="mission-saved" role="status" class="tiny"></span>';profile.append(missionForm);$('#mission-input').value=workspace.mission;
+missionForm.onsubmit=e=>{e.preventDefault();const value=$('#mission-input').value.trim();if(!value){$('#mission-saved').textContent='Enter a mission statement.';return}workspace.mission=value;saveWorkspace();updateCounters();$('#mission-saved').textContent=storageIssue||'Mission updated locally.';recordActivity('Operator','updated the current mission.')};
+const preferenceRows=[['verbose','Detailed Comms replies'],['remember','Remember local changes'],['motion','Ambient graph motion'],['labels','Show graph labels']];
+$$('#settings .row').forEach((row,i)=>{
+ const [key,label]=preferenceRows[i],s=row.querySelector('button');row.firstChild.textContent=label+' ';s.dataset.pref=key;s.setAttribute('role','switch');s.setAttribute('aria-label',label);
+ s.onclick=()=>{workspace.prefs[key]=!workspace.prefs[key];if(key==='remember'&&!workspace.prefs.remember){try{localStorage.removeItem(STORAGE_KEY);storageIssue=''}catch{storageIssue='Could not clear saved data. Use browser site settings to clear it.'}}else saveWorkspace();applyPreferences();updateStorageStatus()};
+});
+function applyPreferences(){
+ for(const s of $$('.switch')){const on=workspace.prefs[s.dataset.pref];s.classList.toggle('on',on);s.setAttribute('aria-checked',String(on))}
+ simPaused=!workspace.prefs.motion;showLabels=workspace.prefs.labels;
+ $('#pause').textContent=simPaused?'Resume motion':'Pause motion';$('#pause').setAttribute('aria-pressed',String(simPaused));$('#labels').textContent=showLabels?'Labels on':'Labels off';$('#labels').setAttribute('aria-pressed',String(showLabels));
+ document.body.classList.toggle('still',simPaused||reducedMotion.matches);updateAnimation();
+}
+applyPreferences();
+const agentDescriptions={Researcher:'Gather sources, distinguish evidence from assumptions, and return a cited brief.',Planner:'Break a goal into ordered, verifiable steps and dependencies.', 'Memory Manager':'Review source quality, resolve links, and propose safe memory updates.',Writer:'Draft clear output from supplied evidence and the current mission.',Critic:'Check correctness, accessibility, security, and missing edge cases.',Observer:'Inspect visible state and report changes without inventing telemetry.'};
+$$('#floor .card').forEach(card=>{
+ const name=card.querySelector('h3').textContent;card.setAttribute('role','button');card.tabIndex=0;card.setAttribute('aria-label','Inspect agent '+name);card.querySelector('.progress').hidden=true;card.querySelector('.tiny').textContent='DEMO ROLE · NOT RUNNING';card.querySelector('p').textContent=agentDescriptions[name];
+ card.onclick=()=>openDialog(name+' playbook',body=>{body.append(el('p',agentDescriptions[name]),el('p','This is a role playbook, not a running process. No work is dispatched from this page.','muted'),el('p','Context: '+(focusMemory?.title||'no memory focus selected')));body.append(action('Use this role for focus',()=>{focusAgent=name;if(focusMemory)setFocus(focusMemory);else $('#agentfocus').textContent=name+' selected · choose a memory in The Vault.';recordActivity('Operator','selected '+name+' as a planning role.');dialog.close()}))});
+ card.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();card.click()}};
+});
+$$('.view:not(.graphview) .panel').forEach((panel,i)=>{
+ const head=panel.querySelector(':scope > .ph'),body=panel.querySelector(':scope > .pb');if(!head||!body)return;
+ const title=head.querySelector('.pt').cloneNode(true);title.querySelector('em')?.remove();const label=title.textContent.trim();body.id||=("panel-body-"+i);
+ const b=action('−',()=>{body.hidden=!body.hidden;b.textContent=body.hidden?'+':'−';b.setAttribute('aria-expanded',String(!body.hidden));b.setAttribute('aria-label',(body.hidden?'Expand ':'Collapse ')+label)});b.classList.add('collapse');b.setAttribute('aria-label','Collapse '+label);b.setAttribute('aria-controls',body.id);b.setAttribute('aria-expanded','true');head.append(b);
+});
+// Static metrics stay as visual examples, with textual alternatives.
+for(const chart of $$('.barwrap')){chart.setAttribute('role','img');chart.setAttribute('aria-label','Demo bar chart: illustrative values only, not measured activity');chart.parentElement.append(el('p','DEMO SERIES · illustrative cycles, not measured performance','tiny'));}
+$('#command .energy').parentElement.querySelector('p').textContent='DEMO GAUGE · compute and context telemetry not connected';
+for(const panel of $$('#analytics .panel'))panel.querySelector('.pb').prepend(el('p','DEMO METRIC · NOT LIVE TELEMETRY','eyebrow'));
+$('#missions .timeline').parentElement.prepend(el('p','SAMPLE SEQUENCE · not scheduled or running','eyebrow'));
+$('#floor .pt em').textContent='PLAYBOOKS';$('#command .stat:last-child small').textContent='Session uptime';
+const sessionStart=Date.now();function updateUptime(){const seconds=Math.floor((Date.now()-sessionStart)/1000);$('#up').textContent=[Math.floor(seconds/3600),Math.floor(seconds/60)%60,seconds%60].map(n=>String(n).padStart(2,'0')).join(':')}updateUptime();setInterval(()=>{if(!document.hidden)updateUptime()},1000);
+const skip=el('a','Skip to workspace','skip-link');skip.href='#workspace';$('.main').id='workspace';$('.main').tabIndex=-1;document.body.prepend(skip);$('.nav').setAttribute('aria-label','HQ sections');
+$('.bootin p').textContent='INITIALIZING LOCAL HQ · DEMO MEMORY';$('.bootin').append(action('Skip boot',()=>{$('#boot').classList.add('hide');$('#boot').hidden=true}));
+const hudObserver=new ResizeObserver(()=>{$('#vault').style.setProperty('--graph-top',($('.graphhud').offsetTop+$('.graphhud').offsetHeight+12)+'px');resize()});hudObserver.observe($('.graphhud'));
+refreshHeader('command');
+$('#detail').hidden=true;$('#close').setAttribute('aria-label','Close memory details');$('#graphmode').textContent='DEMO MEMORY · NO LIVE CONNECTION';
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!dialog.open){if(selected)deselect();else if(!noteList.hidden){noteList.hidden=true;browse.setAttribute('aria-expanded','false');browse.focus()}else if(!$('.chat').hidden){setComms(false);commsToggle.focus()}}if((e.metaKey||e.ctrlKey)&&e.key==='k'&&!dialog.open){e.preventDefault();setComms(true)}});
+setTimeout(()=>{$('#bootmsg').textContent='Local HQ ready · demo memory loaded'},250);setTimeout(()=>{$('#boot').classList.add('hide');$('#boot').hidden=true},650);
 </script></body></html>

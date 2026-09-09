@@ -3,3 +3,7 @@ dist/
 *.tsbuildinfo
 vite.config.js
 vite.config.d.ts
+qa-output/
+test-results/
+playwright-report/
+.astra-hq-brief.md

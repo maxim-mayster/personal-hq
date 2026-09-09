@@ -1,0 +1,12 @@
+{
+  "name": "aria-personal-hq",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "check": "node scripts/check.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.55.1",
+    "@axe-core/playwright": "4.10.2"
+  }
+}
