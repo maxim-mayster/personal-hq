@@ -4,7 +4,7 @@
 
 Keep `index.html` as the single-file application. Preserve Command Center, Agent Floor, The Vault, Mission Control, Analytics Deck, Identity & Settings, and the shared Comms Terminal. The optional 3D graph belongs only inside The Vault. Do not replace this shell with a framework dashboard.
 
-This is a local workspace, not a connected autonomous agent. Charts and role playbooks are explicitly demo material. Comms uses deterministic local commands; it does not call an LLM. No task creation or role selection dispatches work.
+This is a live-data-only workspace. It starts disconnected and renders no records, metrics, agent activity, schedules or memory content until an authenticated connector returns them. Comms is unavailable until a live agent connection exists. No browser-local task creation or role selection dispatches work.
 
 ## Local development
 
@@ -38,9 +38,9 @@ node scripts/audit.mjs candidate
 
 `HQData.build(rows, source)` is the pure data/layout seam. Rows use `{id, title, type, content, links, tag, path}`. IDs identify paths, not merely basenames. Edges are deduplicated without losing reverse-alphabetical links; unresolved links remain explicit.
 
-`HQObsidian` is an optional, manual read-only adapter for a local REST API plugin. Only HTTP(S) loopback origins are allowed; redirects and ambient credentials are disallowed. Reads are bounded by time, request count, note/folder count and response size. Imported content is shown as a READ-ONLY SNAPSHOT, never continuous live sync. Failed reads preserve the previous dataset. Use demo memories to return to the sample graph.
+`HQObsidian` is an optional, manual read-only adapter for a local REST API plugin. Only HTTP(S) loopback origins are allowed; redirects and ambient credentials are disallowed. Reads are bounded by time, request count, note/folder count and response size. Imported content is shown as a READ-ONLY LIVE SNAPSHOT, never continuous live sync. Failed reads preserve the previous dataset. There is no embedded fallback dataset.
 
-GitHub Pages HTTPS may be unable to reach a local plugin because of browser local-network policy, CORS or certificates. Do not weaken browser security or invent a successful sync. Use the local page or retain the demo. Real Obsidian connectivity was not demonstrated during this pass; intercepted test responses are fixtures, not backend evidence.
+GitHub Pages HTTPS may be unable to reach a local plugin because of browser local-network policy, CORS or certificates. Do not weaken browser security or invent a successful sync. No live Obsidian connectivity is claimed until an actual connector response is verified; intercepted test responses are fixtures, not backend evidence.
 
 Before adding write-back, require a separately reviewed authenticated adapter, explicit user confirmation, path validation, conflict detection and an audit trail. Never embed a cloud/model API key in this static site.
 
@@ -51,7 +51,7 @@ Before adding write-back, require a separately reviewed authenticated adapter, e
 - `/find <words>`: search note titles, tags and excerpts with clickable results.
 - `/context`: show stored selected/focused note text and resolved context; detailed replies add two-hop context.
 - `/focus <exact title>`: set operator planning focus, without executing an agent.
-- `/task <title>`: create a local task linked to current memory context.
+- `/task <title>`: unavailable until a live task connector is connected.
 - `/clear`: clear the tab conversation.
 
 Keyboard: native Tab/Enter/Space controls, Escape to close dialogs/inspectors, Cmd/Ctrl+K to expand Comms. Graph shortcuts are scoped to the Vault and excluded from editable/control elements. Reduced-motion preferences suppress graph animation.
