@@ -1,3 +1,3 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-export default defineConfig({ plugins: [react()], base: '/personal-hq/' });
+export default defineConfig({ plugins: [react()], base: '/personal-hq/', build: { rollupOptions: { input: 'app.html' } } });
