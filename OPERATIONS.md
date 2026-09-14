@@ -4,7 +4,7 @@
 
 Keep `index.html` as the single-file application. Preserve Command Center, Agent Floor, The Vault, Mission Control, Analytics Deck, Identity & Settings, and the shared Comms Terminal. The optional 3D graph belongs only inside The Vault. Do not replace this shell with a framework dashboard.
 
-This is a live-data-only workspace. It starts disconnected and renders no records, metrics, agent activity, schedules or memory content until an authenticated connector returns them. Comms is unavailable until a live agent connection exists. No browser-local task creation or role selection dispatches work.
+This is a live-data-only workspace. It starts disconnected and renders no records, metrics, agent activity, schedules or memory content until an authenticated connector returns them. Comms is unavailable until a live agent connection exists. No browser-local task creation or role selection dispatches work. The local `bridge/server.py` companion is the intended Obsidian connector boundary.
 
 ## Local development
 
@@ -38,11 +38,11 @@ node scripts/audit.mjs candidate
 
 `HQData.build(rows, source)` is the pure data/layout seam. Rows use `{id, title, type, content, links, tag, path}`. IDs identify paths, not merely basenames. Edges are deduplicated without losing reverse-alphabetical links; unresolved links remain explicit.
 
-`HQObsidian` is an optional, manual read-only adapter for a local REST API plugin. Only HTTP(S) loopback origins are allowed; redirects and ambient credentials are disallowed. Reads are bounded by time, request count, note/folder count and response size. Imported content is shown as a READ-ONLY LIVE SNAPSHOT, never continuous live sync. Failed reads preserve the previous dataset. There is no embedded fallback dataset.
+`HQObsidian` can read through the local ARIA bridge at `http://127.0.0.1:8766`, which keeps the Obsidian token out of the browser and public Pages build. The bridge proxies bounded vault reads and exposes a validated `POST /api/memory` write path for future durable ARIA memory capture. Direct browser-to-plugin mode remains optional and read-only. Only HTTP(S) loopback origins are allowed for direct mode; redirects and ambient credentials are disallowed. Reads are bounded by time, request count, note/folder count and response size. Failed reads preserve the previous dataset. There is no embedded fallback dataset.
 
 GitHub Pages HTTPS may be unable to reach a local plugin because of browser local-network policy, CORS or certificates. Do not weaken browser security or invent a successful sync. No live Obsidian connectivity is claimed until an actual connector response is verified; intercepted test responses are fixtures, not backend evidence.
 
-Before adding write-back, require a separately reviewed authenticated adapter, explicit user confirmation, path validation, conflict detection and an audit trail. Never embed a cloud/model API key in this static site.
+The bridge write path requires its local Obsidian token, validates Markdown paths, rejects traversal and records no token in the site. Before exposing automatic write-back to ARIA behavior, add explicit user confirmation, conflict detection and an audit trail. Never embed a cloud/model API key in this static site.
 
 ## Local Comms workflow
 

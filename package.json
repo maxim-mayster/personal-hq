@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "test": "playwright test",
-    "check": "node scripts/check.mjs"
+    "check": "node scripts/check.mjs",
+    "test:bridge": "python3 -m unittest discover -s bridge -p 'test_*.py'"
   },
   "devDependencies": {
     "@playwright/test": "1.55.1",
