@@ -103,7 +103,7 @@ function makeData(rows=[],source='disconnected'){
   $('#gstats').textContent=`${nodes.length} NOTES · ${edges.length} LINKS · ${new Set(nodes.map(n=>n.tag)).size} CLUSTERS`;
 }
 // GRAPH RENDERER — optional enhancement, loaded only inside The Vault.
-let animationFrame=0,frameTime=0,orbit=false;
+let animationFrame=0,frameTime=0,orbit=true,orbitDirection=1,orbitSpeed=.12,nextOrbitShift=0,cameraTween=null,homeView=null;
 const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
 const graphLabels=document.createElement('div');graphLabels.id='graphlabels';$('#graph').append(graphLabels);
 function init3D(){
@@ -111,7 +111,7 @@ function init3D(){
   renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'low-power'});
   renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));$('#graph').appendChild(renderer.domElement);
   renderer.domElement.setAttribute('aria-label','3D memory graph. Use Browse notes for keyboard navigation.');
-  controls=new THREE.OrbitControls(camera,renderer.domElement);controls.enableDamping=false;controls.autoRotate=false;controls.autoRotateSpeed=.12;controls.minDistance=25;controls.maxDistance=700;
+  controls=new THREE.OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.08;controls.autoRotate=false;controls.autoRotateSpeed=.12;controls.minDistance=25;controls.maxDistance=700;
   controls.addEventListener('change',draw);
   scene.add(new THREE.AmbientLight(0xffffff,.8));
   const light=new THREE.PointLight(0x77ccff,.9);light.position.set(50,80,100);scene.add(light);
@@ -146,7 +146,7 @@ function rebuild(){
 function draw(){
   if(!renderer||!$('#vault').classList.contains('on')||document.hidden)return;
   const t=frameTime;
-  for(const m of nodeMeshes){const n=m.userData;m.visible=!n._hidden;m.material.opacity=n._dim?.25:1;
+  for(const m of nodeMeshes){const n=m.userData;m.visible=!n._hidden;m.material.opacity=n._dim?.25:1;const focusPulse=selected===n?1.18+Math.sin(t*4.2)*.08:1;m.scale.setScalar(focusPulse);
     const p=m.position.clone().project(camera),x=(p.x+1)*$('#graph').clientWidth/2,y=(1-p.y)*$('#graph').clientHeight/2;
     n.label.hidden=!showLabels||!m.visible||p.z>1||p.z< -1||x<10||x>$('#graph').clientWidth-140||y<10||y>$('#graph').clientHeight-30;
     n.label.style.transform=`translate(${x+8}px,${y-8}px)`;
@@ -155,10 +155,17 @@ function draw(){
   for(const p of pulseMeshes){const d=p.userData;p.visible=!simPaused&&!reducedMotion.matches&&!d.e.a._hidden&&!d.e.b._hidden;p.position.copy(d.curve.getPoint((t*.035+d.phase)%1));}
   renderer.render(scene,camera);
 }
-function animate(now){animationFrame=0;if(!renderer||!$('#vault').classList.contains('on')||document.hidden)return;frameTime=now/1000;controls.autoRotate=orbit&&!simPaused&&!reducedMotion.matches;controls.update();draw();if(!simPaused&&!reducedMotion.matches)animationFrame=requestAnimationFrame(animate)}
+function animate(now){
+  animationFrame=0;if(!renderer||!$('#vault').classList.contains('on')||document.hidden)return;frameTime=now/1000;
+  if(orbit&&!simPaused&&!reducedMotion.matches&&frameTime>=nextOrbitShift){orbitDirection=Math.random()<.5?-1:1;orbitSpeed=.08+Math.random()*.1;nextOrbitShift=frameTime+4+Math.random()*5}
+  if(cameraTween){const p=Math.min(1,(now-cameraTween.started)/cameraTween.duration),e=p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;camera.position.lerpVectors(cameraTween.fromPosition,cameraTween.toPosition,e);controls.target.lerpVectors(cameraTween.fromTarget,cameraTween.toTarget,e);if(p>=1)cameraTween=null}
+  controls.autoRotate=orbit&&!cameraTween&&!simPaused&&!reducedMotion.matches;controls.autoRotateSpeed=orbitSpeed*orbitDirection;controls.update();draw();if(!simPaused&&!reducedMotion.matches)animationFrame=requestAnimationFrame(animate)
+}
 function updateAnimation(){cancelAnimationFrame(animationFrame);animationFrame=0;draw();if(renderer&&$('#vault').classList.contains('on')&&!document.hidden&&!simPaused&&!reducedMotion.matches)animationFrame=requestAnimationFrame(animate)}
 function resize(){if(!renderer)return;const el=$('#graph');if(!el.clientWidth||!el.clientHeight)return;camera.aspect=el.clientWidth/el.clientHeight;camera.updateProjectionMatrix();renderer.setSize(el.clientWidth,el.clientHeight);draw()}
-function fitGraph(){if(!renderer)return;const visible=nodes.filter(n=>!n._hidden);const box=new THREE.Box3();for(const n of visible)box.expandByPoint(new THREE.Vector3(n.x,n.y,n.z));if(!visible.length)return;const center=box.getCenter(new THREE.Vector3()),size=box.getSize(new THREE.Vector3());const distance=Math.max(60,Math.max(size.y,size.x/camera.aspect)/(2*Math.tan(camera.fov*Math.PI/360))+size.z)*1.3;controls.target.copy(center);camera.position.copy(center.clone().add(new THREE.Vector3(0,3,distance)));controls.update();draw()}
+function fitGraph(){if(!renderer)return;const visible=nodes.filter(n=>!n._hidden);const box=new THREE.Box3();for(const n of visible)box.expandByPoint(new THREE.Vector3(n.x,n.y,n.z));if(!visible.length)return;const center=box.getCenter(new THREE.Vector3()),size=box.getSize(new THREE.Vector3());const distance=Math.max(60,Math.max(size.y,size.x/camera.aspect)/(2*Math.tan(camera.fov*Math.PI/360))+size.z)*1.3;controls.target.copy(center);camera.position.copy(center.clone().add(new THREE.Vector3(0,3,distance)));controls.update();if(!selected)homeView={position:camera.position.clone(),target:controls.target.clone()};draw()}
+function tweenCamera(position,target,duration=820){if(!renderer)return;cameraTween={started:performance.now(),duration,fromPosition:camera.position.clone(),toPosition:position.clone(),fromTarget:controls.target.clone(),toTarget:target.clone()};updateAnimation()}
+function zoomToNode(n){const target=new THREE.Vector3(n.x,n.y,n.z),offset=camera.position.clone().sub(controls.target);if(offset.lengthSq()<1)offset.set(0,0,1);offset.normalize().multiplyScalar(Math.max(22,Math.min(62,camera.position.distanceTo(controls.target)*.28)));tweenCamera(target.clone().add(offset),target)}
 function pick(e){if(!renderer)return;const r=renderer.domElement.getBoundingClientRect();mouse.x=((e.clientX-r.left)/r.width)*2-1;mouse.y=-((e.clientY-r.top)/r.height)*2+1;raycaster.setFromCamera(mouse,camera);const hit=raycaster.intersectObjects(nodeMeshes.filter(m=>m.visible))[0];if(hit)select(hit.object.userData);else deselect()}
 reducedMotion.addEventListener('change',updateAnimation);document.addEventListener('visibilitychange',updateAnimation);
 let selectionOpener;
@@ -172,9 +179,9 @@ function select(n){
  if(!linked.length)$('#connections').append(el('p','No resolved connections.','muted'));
  if(n.unresolved.length)$('#connections').append(el('p',`Unresolved: ${n.unresolved.join(', ')}. These targets are not in this snapshot.`,'muted'));
  $('#edit').disabled=true;$('#edit').textContent='Source unavailable';
- $('#detail').hidden=false;$('#detail').classList.add('show');$('#detail').setAttribute('aria-label','Memory details');$('#close').focus();draw();
+ $('#detail').hidden=false;$('#detail').classList.add('show');$('#detail').setAttribute('aria-label','Memory details');zoomToNode(n);$('#close').focus();draw();
 }
-function deselect(){const wasSelected=selected;selected=null;nodeMeshes.forEach(m=>m.userData._dim=false);$('#detail').classList.remove('show');$('#detail').hidden=true;if(wasSelected&&selectionOpener?.isConnected)selectionOpener.focus();draw();}
+function deselect(){const wasSelected=selected;selected=null;nodeMeshes.forEach(m=>{m.userData._dim=false;m.scale.setScalar(1)});$('#detail').classList.remove('show');$('#detail').hidden=true;if(wasSelected&&homeView)tweenCamera(homeView.position,homeView.target);if(wasSelected&&selectionOpener?.isConnected)selectionOpener.focus();draw()}
 function fly(){if(!selected||!renderer)return;const target=new THREE.Vector3(selected.x,selected.y,selected.z);camera.position.copy(target.clone().add(new THREE.Vector3(0,0,65)));controls.target.copy(target);controls.update();draw()}
 function applyFilter(){
   const q=$('#search').value.trim().toLowerCase();
@@ -195,7 +202,7 @@ $$('.nav button').forEach(b=>{b.setAttribute('aria-label',b.querySelector('em').
 function graphTool(id,label,handler){const b=document.createElement('button');b.id=id;b.className='tool';b.textContent=label;b.onclick=handler;$('.graphhud').append(b);return b}
 graphTool('clearfilters','Clear filters',()=>{activeFilter='all';$('#search').value='';applyFilter()});
 graphTool('fitgraph','Fit graph',fitGraph);
-graphTool('orbit','Orbit off',()=>{orbit=!orbit;$('#orbit').textContent=orbit?'Orbit on':'Orbit off';$('#orbit').setAttribute('aria-pressed',String(orbit));updateAnimation()});
+graphTool('orbit','Orbit on',()=>{orbit=!orbit;$('#orbit').textContent=orbit?'Orbit on':'Orbit off';$('#orbit').setAttribute('aria-pressed',String(orbit));if(orbit)nextOrbitShift=0;updateAnimation()});
 graphTool('pause','Pause motion',()=>{workspace.prefs.motion=!workspace.prefs.motion;saveWorkspace();applyPreferences()});
 graphTool('labels','Labels on',()=>{workspace.prefs.labels=!workspace.prefs.labels;saveWorkspace();applyPreferences()});
 const resultCount=document.createElement('span');resultCount.id='resultcount';resultCount.className='tiny';resultCount.setAttribute('role','status');$('.graphhud').append(resultCount);
