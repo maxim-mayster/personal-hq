@@ -56,6 +56,7 @@ The bridge write path requires its local Obsidian token, validates Markdown path
 - `/focus <exact title>`: set operator planning focus, without executing an agent.
 - `/task <title>`: unavailable until a live task connector is connected.
 - `/clear`: clear the tab conversation.
+- Normal text: forwarded to the active Hermes conversation when the HQ is opened inside the Hermes desktop preview via `window.hermes.send`. The public GitHub Pages copy cannot claim a model connection and gives an explicit handoff-unavailable message.
 
 Keyboard: native Tab/Enter/Space controls, Escape to close dialogs/inspectors, Cmd/Ctrl+K to expand Comms. Graph shortcuts are scoped to the Vault and excluded from editable/control elements. Reduced-motion preferences suppress graph animation.
 

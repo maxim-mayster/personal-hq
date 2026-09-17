@@ -59,7 +59,7 @@ test('Comms never presents local commands as live agent activity',async({page})=
  await send('<img src=x onerror="window.injected=true">');
  expect(await page.evaluate(()=>window.injected)).toBeUndefined();
  await expect(page.locator('#chatbody img')).toHaveCount(0);
- await expect(page.locator('#chatbody')).toContainText('No live model');
+ await expect(page.locator('#chatbody')).toContainText('No Hermes desktop handoff');
  await send('/find Machine Learning');
  await expect(page.locator('#chatbody')).toContainText('0 matching memories');
  await expect(page.locator('body')).not.toContainText(/DEMO/i);

@@ -286,13 +286,18 @@ vaultName.oninput=()=>{if(selected){$('#edit').disabled=true;$('#edit').textCont
 // COMMS — deterministic local commands, never simulated model responses.
 const commsToggle=action('Expand Comms',()=>setComms($('.chat').hidden));commsToggle.id='comms-toggle';commsToggle.setAttribute('aria-controls','comms-chat');$('.comms .ph').append(commsToggle);$('.chat').id='comms-chat';
 function setComms(open){$('.chat').hidden=!open;$('.comms').classList.toggle('expanded',open);commsToggle.textContent=open?'Collapse Comms':'Expand Comms';commsToggle.setAttribute('aria-expanded',String(open));if(open)$('#chatinput').focus()}
-setComms(false);$('#thinking').textContent='LOCAL';$('#chatinput').setAttribute('aria-label','Comms command');$('#chatinput').maxLength=1000;$('#chatinput').placeholder='/help · /find · /task · /context';
+setComms(false);$('#thinking').textContent=typeof window.hermes?.send==='function'?'HERMES LINK':'LOCAL';$('#chatinput').setAttribute('aria-label','Comms command');$('#chatinput').maxLength=1000;$('#chatinput').placeholder='/help · /find · /task · /context';
 $('#chatbody').setAttribute('role','log');$('#chatbody').setAttribute('aria-label','Local Comms conversation');$('#chatbody').setAttribute('aria-live','polite');$('#chatbody').replaceChildren();
 function addBubble(text,who='a'){
  const d=el('div',undefined,'bubble '+(who==='u'?'u':'a'));d.append(document.createTextNode(text),el('time',(who==='u'?'YOU':'ARIA / LOCAL')+' · '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})));$('#chatbody').append(d);
  while($('#chatbody').childElementCount>50)$('#chatbody').firstElementChild.remove();$('#chatbody').scrollTop=$('#chatbody').scrollHeight;return d;
 }
-const commsHelp='Local commands: /status, /find <words>, /context, /focus <exact title>, /task <title>, /clear. No live model or agent execution is connected. Tasks stay in this browser.';
+const commsHelp='Local commands: /status, /find <words>, /context, /focus <exact title>, /task <title>, /clear. Normal text is forwarded to Hermes when this page is open inside the Hermes desktop preview.';
+function sendToHermes(value){
+ if(typeof window.hermes?.send!=='function')return false;
+ try{window.hermes.send(value);addBubble('Sent to the active Hermes conversation.','a');$('#thinking').textContent='HERMES LINK';return true}
+ catch{addBubble('Hermes handoff failed. The HQ is still available for local commands.','a');return false}
+}
 addBubble('ARIA HQ is ready. This is a local command terminal, not an AI chat connection. Type /help for available actions.');
 function adjacent(n){return edges.filter(e=>e.a===n||e.b===n).map(e=>e.a===n?e.b:e.a)}
 function contextReply(n){
@@ -315,7 +320,7 @@ function runCommand(value){
  case '/context':contextReply(selected||focusMemory);break;
  case '/focus':{const n=nodes.find(n=>n.title.toLowerCase()===arg.toLowerCase());if(!n){addBubble('Use /focus <exact memory title>. Find a title with /find first.');break}setFocus(n);addBubble('Operator focus set to '+n.title+'. No agent was dispatched.');break}
  case '/task':{const t=createTask(arg,'P1',(selected||focusMemory)?.id||'');addBubble(t?'Created local task: '+t.title+'. No agent was dispatched.':'Usage: /task <title>. Maximum 200 tasks.');break}
- default:addBubble('No live model is connected, so I cannot answer free-form requests. '+commsHelp);
+ default:if(!sendToHermes(value))addBubble('No Hermes desktop handoff is available here. Open this HQ inside the Hermes desktop preview to talk to ARIA. '+commsHelp);
  }
  $('#chatbody').scrollTop=$('#chatbody').scrollHeight;
 }
