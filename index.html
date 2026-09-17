@@ -320,7 +320,7 @@ function runCommand(value){
  case '/context':contextReply(selected||focusMemory);break;
  case '/focus':{const n=nodes.find(n=>n.title.toLowerCase()===arg.toLowerCase());if(!n){addBubble('Use /focus <exact memory title>. Find a title with /find first.');break}setFocus(n);addBubble('Operator focus set to '+n.title+'. No agent was dispatched.');break}
  case '/task':{const t=createTask(arg,'P1',(selected||focusMemory)?.id||'');addBubble(t?'Created local task: '+t.title+'. No agent was dispatched.':'Usage: /task <title>. Maximum 200 tasks.');break}
- default:if(!sendToHermes(value))addBubble('No Hermes desktop handoff is available here. Open this HQ inside the Hermes desktop preview to talk to ARIA. '+commsHelp);
+ default:if(!sendToHermes(value))addBubble('No Hermes desktop handoff is available here. Open the HQ as an inline Hermes preview (`::preview{file="..."}`) to talk to ARIA from this panel. '+commsHelp);
  }
  $('#chatbody').scrollTop=$('#chatbody').scrollHeight;
 }
