@@ -269,12 +269,13 @@ async function syncVault(){
  const token=$('#apitoken').value.trim();$('#apitoken').value='';$('#sync').disabled=true;$('#cancel-sync').hidden=false;$('#syncmsg').textContent='Reading local vault… (20 second limit)';
  try{
   const bridge=new URL(base).port==='8766';const rows=await HQObsidian.snapshot(base,bridge?'':token,controller.signal);if(controller.signal.aborted)throw Error('Cancelled');
-  if(!rows.length)throw Error('No Markdown notes found');snapshotAt=new Date();replaceMemories(rows,bridge?'bridge':'snapshot');
+  if(!rows.length)throw Error('No Markdown notes found');snapshotAt=new Date();$('#up').textContent=snapshotAt.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});replaceMemories(rows,bridge?'bridge':'snapshot');
   $('#syncmsg').textContent=bridge?`Connected to Obsidian through ARIA bridge · loaded ${rows.length} notes.`:`Loaded ${rows.length} notes into this tab. Direct mode is read-only.`;recordActivity('Memory Manager',bridge?'connected ARIA to the Obsidian vault: '+rows.length+' notes.':'loaded a read-only Obsidian snapshot: '+rows.length+' notes.');
  }catch(err){$('#syncmsg').textContent=`${controller.signal.aborted?'Cancelled or timed out':err.message}. Kept previous data. Check Obsidian, plugin URL, token, certificate and browser CORS/local-network access. No write was attempted.`;}
  finally{clearTimeout(timer);importController=null;$('#sync').disabled=false;$('#cancel-sync').hidden=true;}
 }
 $('#sync').onclick=syncVault;$('#sync').textContent='Load read-only snapshot';$('#syncmsg').setAttribute('role','status');
+setTimeout(()=>syncVault(),900);
 const cancelSync=action('Cancel read',()=>importController?.abort());cancelSync.id='cancel-sync';cancelSync.hidden=true;$('#sync').after(cancelSync);
 const demoButton=action('Use demo memories',()=>{});demoButton.hidden=true;
 $('#apiurl').previousElementSibling.setAttribute('for','apiurl');$('#apitoken').previousElementSibling.setAttribute('for','apitoken');$('#apitoken').autocomplete='off';
