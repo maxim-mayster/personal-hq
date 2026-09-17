@@ -6,7 +6,10 @@ Keep `index.html` as the single-file application. Preserve Command Center, Agent
 
 This is a live-data-only workspace. It starts disconnected and renders no records, metrics, agent activity, schedules or memory content until an authenticated connector returns them. Comms is unavailable until a live agent connection exists. No browser-local task creation or role selection dispatches work. The local `bridge/server.py` companion is the intended Obsidian connector boundary.
 
-## Local development
+## Daily operating contract
+
+The default Command Center is intentionally a **Today** view, not a general system dashboard. It prioritizes connector-backed work in this order: needs action, due today, waiting on, then recent changes. Gmail, Google Calendar, Apple Reminders and GitHub are the intended operational sources; Obsidian is supporting context, not the daily queue. The view adapts its guidance to local time: start-of-day planning, workday execution, close-out follow-ups, or evening capture. System telemetry, agent role playbooks, graph exploration and analytics remain secondary sections and must not be presented as live unless a connector supplies them.
+
 
 Requirements: Node.js, Python 3, npm.
 
